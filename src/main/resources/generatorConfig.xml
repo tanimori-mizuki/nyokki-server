@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- https://cloudear.jp/blog/?p=708 -->
+<!-- https://cloudear.jp/blog/?p=712 -->
+
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	 <classPathEntry location="/Users/fuka/Desktop/postgresql-42.2.9.jar"/>
+
+ <context id="postgres" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="org.postgresql.Driver"
+        connectionURL="jdbc:postgresql://localhost:5432/nyokki-server?serverTimezone=JST"
+        userId="postgres"
+        password="postgres">
+    </jdbcConnection>
+
+    <javaModelGenerator targetPackage="com.example.domain" targetProject="src/main/java/">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="com.example.mapper"  targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.mapper"  targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table catalog="nyokki-server" tableName="users" />
+	
+  </context>
+</generatorConfiguration>
