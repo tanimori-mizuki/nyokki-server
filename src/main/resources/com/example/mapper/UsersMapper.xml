@@ -13,6 +13,13 @@
     <result column="firstday_continuation" property="firstdayContinuation" jdbcType="DATE" />
     <result column="level_achievement" property="levelAchievement" jdbcType="INTEGER" />
   </resultMap>
+  
+   <!-- 手動で入力したSql -->
+  <select id="findAll" resultType="com.example.domain.Users">
+  	select id,name,continuation_days,firstday_continuation,level_achievement from users order by id
+  </select>
+  <!--ここまで  -->
+  
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
