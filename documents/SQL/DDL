@@ -1,0 +1,55 @@
+--ユーザテーブル
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+id serial NOT NULL PRIMARY KEY,
+name varchar(30) NOT NULL UNIQUE,
+continuation_days integer NOT NULL,
+firstday_continuation date,
+level_achievement integer);
+
+--ToDoテーブル
+DROP TABLE IF EXISTS todoes;
+CREATE TABLE todoes(
+id serial NOT NULL PRIMARY KEY,
+user_id serial NOT NULL REFERENCES users(id),
+task varchar(60)  NOT NULL,
+status integer NOT NULL DEFAULT 1,
+registration_date date NOT NULL);
+
+--日報テーブル
+DROP TABLE IF EXISTS daily_reports;
+CREATE TABLE daily_reports(
+id serial NOT NULL PRIMARY KEY,
+user_id serial NOT NULL REFERENCES users(id),
+todo_id serial NOT NULL REFERENCES todoes(id),
+today_report varchar(300) NOT NULL,
+level_achievementlevel_achievement integer NOT NULL,
+impressions varchar(1000) NOT NULL,
+registration_date date NOT NULL);
+
+--月報テーブル
+DROP TABLE IF EXISTS monthly_reports;
+CREATE TABLE monthly_reports(
+id serial NOT NULL PRIMARY KEY,
+user_id serial NOT NULL REFERENCES users(id),
+objective_id serial NOT NULL,
+this_month_objective varchar(100) NOT NULL,
+impressions varchar(1000),
+next_month_objective varchar(100),
+registration_date date NOT NULL);
+
+--目標テーブル
+DROP TABLE IF EXISTS objectives;
+CREATE TABLE objectives(
+id serial NOT NULL PRIMARY KEY,
+user_id serial NOT NULL REFERENCES users(id),
+objective varchar(100) NOT NULL,
+objective_month date);
+
+--フォローテーブル
+DROP TABLE IF EXISTS followings;
+CREATE TABLE followings(
+id serial NOT NULL PRIMARY KEY,
+follow_flag boolean NOT NULL DEFAULT FALSE,
+following_id integer NOT NULL,
+followed_id integer NOT NULL);
