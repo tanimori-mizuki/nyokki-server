@@ -31,7 +31,7 @@
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
-    <table catalog="nyokki-server" tableName="daily_reports" />
+    <table catalog="nyokki-server" tableName="monthly_reports" />
 	
   </context>
 </generatorConfiguration>
