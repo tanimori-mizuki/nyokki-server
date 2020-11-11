@@ -31,6 +31,7 @@ public class UsersController {
 		System.out.println(user.getName()+" "+user.getId());
 		System.out.println(user.toString());
 		return user;
+
 	}
 
 }
