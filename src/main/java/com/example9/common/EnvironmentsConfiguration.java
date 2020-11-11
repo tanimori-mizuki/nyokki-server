@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
+//import lombok.Data;
+
 /**
  * 環境変数(ymlに設定)を参照するクラス.
  * 
