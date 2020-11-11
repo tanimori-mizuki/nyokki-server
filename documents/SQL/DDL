@@ -53,3 +53,6 @@ id serial NOT NULL PRIMARY KEY,
 follow_flag boolean NOT NULL DEFAULT FALSE,
 following_id integer NOT NULL,
 followed_id integer NOT NULL);
+
+--インサート文テスト用
+insert into users (name,continuation_days,firstday_continuation,level_achievement) values('same',3,'2020-11-11',2);

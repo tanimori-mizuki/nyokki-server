@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/nyokki-server
+    username: postgres
+    password: postgres
+    
+# ローカル環境での起動ポート番号の設定
+server:
+  port: 8080 
+  
+# 環境変数(デプロイ時に変更)
+# ローカル環境のOrigin
+environments:
+ originUrl: http://localhost:8888
+
