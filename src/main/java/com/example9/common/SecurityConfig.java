@@ -30,7 +30,6 @@
 //	public CorsConfigurationSource corsfilter() {
 //		CorsConfiguration configuration = new CorsConfiguration();
 //		configuration.setAllowCredentials(true);
-//		configuration.addAllowedOrigin("http://localhost:8888");
 //		configuration.setAllowedHeaders(Arrays.asList( // CORSリクエストで受信を許可するヘッダー情報(以下は例です)
 //				"Access-Control-Allow-Headers", 
 //				"Access-Control-Allow-Origin", 
@@ -67,19 +66,19 @@
 //	protected void configure(HttpSecurity http) throws Exception {
 //
 //		http.authorizeRequests().antMatchers("/user/**").permitAll().anyRequest().authenticated();
-
-//		http.formLogin().loginPage("/signIn") // ログイン画面に遷移させるパス
-//				.loginProcessingUrl("/nyokkiSignIn") // ログイン可否判定するパス
-//				.failureUrl("/signIn?error=true") // ログイン失敗時に遷移させるパス
-//				.defaultSuccessUrl("/", false); // 第1引数:デフォルトでログイン成功時に遷移させるパス
-//												// 第2引数: true :認証後常に第1引数のパスに遷移
-//												// false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
 //
-//		http.logout() // ログアウトに関する設定
-//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // ログアウトさせる際に遷移させるパス
-//				.logoutSuccessUrl("/signIn") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
-//				.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
-//				.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
+////		http.formLogin().loginPage("/signIn") // ログイン画面に遷移させるパス
+////				.loginProcessingUrl("/nyokkiSignIn") // ログイン可否判定するパス
+////				.failureUrl("/signIn?error=true") // ログイン失敗時に遷移させるパス
+////				.defaultSuccessUrl("/", false); // 第1引数:デフォルトでログイン成功時に遷移させるパス
+////												// 第2引数: true :認証後常に第1引数のパスに遷移
+////												// false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
+////
+////		http.logout() // ログアウトに関する設定
+////				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // ログアウトさせる際に遷移させるパス
+////				.logoutSuccessUrl("/signIn") // ログアウト後に遷移させるパス(ここではログイン画面を設定)
+////				.deleteCookies("JSESSIONID") // ログアウト後、Cookieに保存されているセッションIDを削除
+////				.invalidateHttpSession(true); // true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 //	}
 //
 //}
