@@ -1,4 +1,4 @@
-package com.example9.controller;
+package com.example.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +14,10 @@ public class ShowSignInController {
 		return "あああ";
 	}
 
-	@PostMapping("/signIn")
-	public String signInPage2() {
-		System.out.println("呼び出し失敗");
-		return "いいい";
-	}
+//	@PostMapping("/signIn")
+//	public String signInPage2() {
+//		System.out.println("呼び出し失敗");
+//		return "いいい";
+//	}
 
 }

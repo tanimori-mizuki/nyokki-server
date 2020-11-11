@@ -1,4 +1,4 @@
-package com.example9.common;
+package com.example.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	/**
 	 * CORSの許可を行うメソッド 環境変数に設定したオリジンのURLを許容
-	 *
 	 * @param registry CORSの許可一覧
 	 *
 	 */

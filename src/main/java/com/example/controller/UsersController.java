@@ -12,6 +12,7 @@ import com.example.service.UsersService;
 
 /**
  * ユーザーのコントローラークラス.
+ * 
  * @author fuka
  *
  */
@@ -21,13 +22,12 @@ public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
-	
+
 	@RequestMapping("")
-	public String showUsers(Model model) {
+	public List<Users> showUsers(Model model) {
 		List<Users> usersList = usersService.getAllUsers();
-		model.addAttribute("usersList", usersList);
-		return "users";
+		// model.addAttribute("usersList", usersList);
+		return usersList;
 	}
-	
-	
+
 }
