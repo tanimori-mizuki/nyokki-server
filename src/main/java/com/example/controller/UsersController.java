@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Users;
+import com.example.domain.User;
 import com.example.service.UsersService;
 
 /**
@@ -26,8 +26,8 @@ public class UsersController {
 	private UsersService usersService;
 
 	@PostMapping("")
-	public Users showUsers() {
-		Users user = usersService.getUsers();
+	public User showUsers() {
+		User user = usersService.getUsers();
 		System.out.println(user.getName()+" "+user.getId());
 		System.out.println(user.toString());
 		return user;
