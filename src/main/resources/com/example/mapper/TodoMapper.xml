@@ -15,7 +15,7 @@
   </resultMap>
   
    <!-- 手動で入力したSql -->
-  <select id="findAll" resultType="com.example.domain.User" resultMap="BaseResultMap">
+  <select id="findAll" resultType="com.example.domain.Todo" resultMap="BaseResultMap">
   	select id, user_id, task, status, registration_date from todoes order by id
   </select>
   <!--ここまで  -->
