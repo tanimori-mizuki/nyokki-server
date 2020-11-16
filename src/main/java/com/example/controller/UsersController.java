@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.User;
+import com.example.dto.ResponseObject;
+import com.example.service.ShowTopPageService;
 import com.example.service.UsersService;
 
 /**
@@ -22,16 +24,30 @@ import com.example.service.UsersService;
 @RequestMapping("/users")
 public class UsersController {
 
+//	@Autowired
+//	private UsersService usersService;
+	
 	@Autowired
-	private UsersService usersService;
+	private ShowTopPageService showTopPageService;
 
 	@PostMapping("")
-	public User showUsers() {
-		User user = usersService.getUsers();
-		System.out.println(user.getName()+" "+user.getId());
-		System.out.println(user.toString());
-		return user;
+	public ResponseObject showUsers() {
+//		User user = usersService.getUsers();
+//		System.out.println(user.getName()+" "+user.getId());
+//		System.out.println(user.toString());
+		
+		ResponseObject responseObject = new ResponseObject();
+		responseObject = showTopPageService.showTopPage();
+		
+		return responseObject;
 
 	}
+//	@PostMapping("")
+//	public List<User> showUsers() {
+//		List<User> userList = usersService.getAllUsers();
+//		System.out.println(userList);
+//		return userList;
+//
+//	}
 
 }

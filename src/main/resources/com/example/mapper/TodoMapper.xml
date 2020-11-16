@@ -13,6 +13,13 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="registration_date" property="registrationDate" jdbcType="DATE" />
   </resultMap>
+  
+   <!-- 手動で入力したSql -->
+  <select id="findAll" resultType="com.example.domain.User" resultMap="BaseResultMap">
+  	select id, user_id, task, status, registration_date from todoes order by id
+  </select>
+  <!--ここまで  -->
+  
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
