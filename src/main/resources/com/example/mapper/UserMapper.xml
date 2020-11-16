@@ -15,7 +15,7 @@
   </resultMap>
   
    <!-- 手動で入力したSql -->
-  <select id="findAll" resultType="com.example.domain.User">
+  <select id="findAll" resultType="com.example.domain.User" resultMap="BaseResultMap">
   	select id,name,continuation_days,firstday_continuation,level_achievement from users order by id
   </select>
   <select id="findAllUser" resultType="com.example.domain.User">
