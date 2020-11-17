@@ -19,7 +19,9 @@ import lombok.Data;
  */
 @Data
 public class ResponseObject {
-
+	
+	/** ログインユーザ */
+	private User loginUser;
 	/** ユーザ一覧 */
 	private List<User> userList;
 	/** Todo一覧 */
