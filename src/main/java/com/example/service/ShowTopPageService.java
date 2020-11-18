@@ -60,6 +60,7 @@ public class ShowTopPageService {
 			System.out.println(userList.get(i));
 			System.out.println(userList.get(i).getId());
 			System.out.println(userList.get(i).getName());
+			System.out.println(userList.get(i).getGmail());			
 		}
 		System.out.println("todoリスト" + todoList);
 		for (int i = 0; i < todoList.size(); i++) {
