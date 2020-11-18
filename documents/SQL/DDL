@@ -1,14 +1,15 @@
 --ユーザテーブル
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users(
 id serial NOT NULL PRIMARY KEY,
 name varchar(30) NOT NULL UNIQUE,
+gmail varchar(255) NOT NULL,
 continuation_days integer NOT NULL,
 firstday_continuation date,
 level_achievement integer);
 
 --ToDoテーブル
-DROP TABLE IF EXISTS todoes;
+DROP TABLE IF EXISTS todoes CASCADE;
 CREATE TABLE todoes(
 id serial NOT NULL PRIMARY KEY,
 user_id serial NOT NULL REFERENCES users(id),
@@ -58,32 +59,32 @@ followed_id integer NOT NULL);
 
 --インサート文テスト用ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-ユーザー情報
-insert into users (name,continuation_days,firstday_continuation,level_achievement) values('same',3,'2020-11-11',2);
-insert into users (name,continuation_days,firstday_continuation,level_achievement) values('same2',2,'2020-11-16',3);
-insert into users (name,continuation_days,firstday_continuation,level_achievement) values('same3',1,'2020-11-16',1);
+--ユーザー情報
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement) values('same','same@gmail.com',3,'2020-11-11',2);
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement) values('same2','same2@gmail.com',2,'2020-11-16',3);
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement) values('same3','same3@gmail.com',1,'2020-11-16',1);
 
-Todo情報
+--Todo情報
 insert into todoes (task,status,registration_date) values('サンプルタスク',1,'2020-11-16');
 insert into todoes (task,status,registration_date) values('サンプルタスク2',1,'2020-11-16');
 insert into todoes (task,status,registration_date) values('サンプルタスク3',1,'2020-11-16');
 
-日報情報
+--日報情報
 insert into daily_reports (today_report,level_achievementlevel_achievement, impressions, registration_date) values('日報サンプル',1,'所感1','2020-11-16');
 insert into daily_reports (today_report,level_achievementlevel_achievement, impressions, registration_date) values('日報サンプル2',2,'所感2','2020-11-17');
 insert into daily_reports (today_report,level_achievementlevel_achievement, impressions, registration_date) values('日報サンプル3',3,'所感3','2020-11-18');
 
-月報情報
+--月報情報
 insert into monthly_reports (this_month_objective, impressions, next_month_objective, registration_date) values('今月の目標1','今月の所感1','来月の目標1','2020-11-30');
 insert into monthly_reports (this_month_objective, impressions, next_month_objective, registration_date) values('今月の目標2','今月の所感2','来月の目標2','2020-12-30');
 insert into monthly_reports (this_month_objective, impressions, next_month_objective, registration_date) values('今月の目標3','今月の所感3','来月の目標3','2021-1-30');
 
-目標情報
+--目標情報
 insert into objectives (objective, objective_month) values('目標','2020-12-30');
 insert into objectives (objective, objective_month) values('目標2','2021-1-30');
 insert into objectives (objective, objective_month) values('目標3','2021-2-28');
 
-フォローテーブル
+--フォローテーブル
 insert into followings (follow_flag, following_id, followed_id) values(true,1,2);
 insert into followings (follow_flag, following_id, followed_id) values(false,3,4);
 insert into followings (follow_flag, following_id, followed_id) values(true,5,6);
