@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.Todo;
 import com.example.domain.User;
 import com.example.dto.ResponseObject;
+import com.example.mapper.TodoMapper;
 import com.example.mapper.UserMapper;
 
 /**
@@ -23,6 +25,9 @@ public class GetResponseObjectService {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
+	private TodoMapper todoMapper;
+	
 	/**
 	 * ログイン時にログインユーザ+必要な情報を返すメソッド.
 	 * 
@@ -33,14 +38,22 @@ public class GetResponseObjectService {
 		
 		ResponseObject responseObject = new ResponseObject();
 		
+		// ログインユーザ
 		User loginUser = userMapper.findByGmail(gmail);
 		System.out.println(loginUser);
 		
+		// ユーザリスト
 		List<User> userList = userMapper.findAll();
 		System.out.println(userList);
 		
+		// Todo(日報)リスト
+		List<Todo> todoList = todoMapper.findAll();
+		System.out.println(todoList);
+		
+		// responseObjectに詰める処理
 		responseObject.setLoginUser(loginUser);
 		responseObject.setUserList(userList);
+		responseObject.setTodoList(todoList);
 		
 		System.out.println(responseObject);
 		
