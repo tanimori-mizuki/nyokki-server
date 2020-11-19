@@ -14,7 +14,7 @@
   </resultMap>
   
   <!-- userIdで1件検索を行う -->
-  <select id="findByUserId" resultType="com.example.domain.DailyReport" resultMap="BaseResultMap">
+  <select id="findByUserId" resultType="com.example.domain.Objective" resultMap="BaseResultMap">
   	  	select id,user_id,objective,objective_month
 		from objectives
 		where user_id=#{userId};

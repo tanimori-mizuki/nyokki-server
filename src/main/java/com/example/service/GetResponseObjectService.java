@@ -61,6 +61,7 @@ public class GetResponseObjectService {
 		// ログインユーザ
 		User loginUser = userMapper.findByGmail(gmail);
 		System.out.println(loginUser);
+		System.out.println(loginUser.getId());
 		
 		// ユーザリスト
 		List<User> userList = userMapper.findAll();
