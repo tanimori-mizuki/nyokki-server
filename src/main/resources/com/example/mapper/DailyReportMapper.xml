@@ -15,6 +15,14 @@
     <result column="impressions" property="impressions" jdbcType="VARCHAR" />
     <result column="registration_date" property="registrationDate" jdbcType="DATE" />
   </resultMap>
+  
+  <!-- userIdで1件検索を行う -->
+  <select id="findByUserId" resultType="com.example.domain.DailyReport" resultMap="BaseResultMap">
+  	  	select id,user_id,todo_id,today_report,level_achievementlevel_achievement,impressions,registration_date
+		from daily_reports
+		where user_id=#{userId};
+  </select>
+  
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
