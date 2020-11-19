@@ -16,7 +16,8 @@
     <result column="registration_date" property="registrationDate" jdbcType="DATE" />
   </resultMap>
   
-  <select id="findAll" resultType="com.example.domain.MonthlyReport" resultMap="BaseResultMap">
+  <!-- userIdで1件検索を行う -->
+  <select id="findByUserId" resultType="com.example.domain.MonthlyReport" resultMap="BaseResultMap">
   	  	select id,user_id,objective_id,this_month_objective,impressions,next_month_objective,registration_date
 		from monthly_reports
 		order by id;

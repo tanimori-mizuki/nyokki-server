@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.MonthlyReport;
 import com.example.domain.Todo;
 import com.example.domain.User;
 import com.example.dto.ResponseObject;
+import com.example.mapper.MonthlyReportMapper;
 import com.example.mapper.TodoMapper;
 import com.example.mapper.UserMapper;
 
@@ -27,6 +29,9 @@ public class GetResponseObjectService {
 	
 	@Autowired
 	private TodoMapper todoMapper;
+	
+	@Autowired
+	private MonthlyReportMapper monthlyReportMapper;
 	
 	/**
 	 * ログイン時にログインユーザ+必要な情報を返すメソッド.
@@ -50,10 +55,15 @@ public class GetResponseObjectService {
 		List<Todo> todoList = todoMapper.findAll();
 		System.out.println(todoList);
 		
+		// 月報情報
+		MonthlyReport monthlyReport = monthlyReportMapper.findByUserId(loginUser.getId());
+		System.out.println(monthlyReport);
+		
 		// responseObjectに詰める処理
 		responseObject.setLoginUser(loginUser);
 		responseObject.setUserList(userList);
 		responseObject.setTodoList(todoList);
+		responseObject.setMonthlyReport(monthlyReport);
 		
 		System.out.println(responseObject);
 		
