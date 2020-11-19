@@ -6,11 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.DailyReport;
+import com.example.domain.Following;
 import com.example.domain.MonthlyReport;
+import com.example.domain.Objective;
 import com.example.domain.Todo;
 import com.example.domain.User;
 import com.example.dto.ResponseObject;
+import com.example.mapper.DailyReportMapper;
+import com.example.mapper.FollowingMapper;
 import com.example.mapper.MonthlyReportMapper;
+import com.example.mapper.ObjectiveMapper;
 import com.example.mapper.TodoMapper;
 import com.example.mapper.UserMapper;
 
@@ -33,6 +39,15 @@ public class GetResponseObjectService {
 	@Autowired
 	private MonthlyReportMapper monthlyReportMapper;
 	
+	@Autowired
+	private DailyReportMapper dailyReportMapper;
+	
+	@Autowired
+	private ObjectiveMapper objectiveMapper;
+	
+	@Autowired
+	private FollowingMapper followingMapper;
+	
 	/**
 	 * ログイン時にログインユーザ+必要な情報を返すメソッド.
 	 * 
@@ -51,19 +66,34 @@ public class GetResponseObjectService {
 		List<User> userList = userMapper.findAll();
 		System.out.println(userList);
 		
-		// Todo(日報)リスト
+		// Todoリスト
 		List<Todo> todoList = todoMapper.findAll();
 		System.out.println(todoList);
+		
+		// 日報情報
+		DailyReport dailyReport = dailyReportMapper.findByUserId(loginUser.getId());
+		System.out.println(dailyReport);
 		
 		// 月報情報
 		MonthlyReport monthlyReport = monthlyReportMapper.findByUserId(loginUser.getId());
 		System.out.println(monthlyReport);
 		
+		// 目標情報
+		Objective objective = objectiveMapper.findByUserId(loginUser.getId());
+		System.out.println(objective);
+		
+		// フォロー一覧情報
+		List<Following>followingList = followingMapper.findAll();
+		System.out.println(followingList);
+		
 		// responseObjectに詰める処理
 		responseObject.setLoginUser(loginUser);
 		responseObject.setUserList(userList);
 		responseObject.setTodoList(todoList);
+		responseObject.setDailyReport(dailyReport);
 		responseObject.setMonthlyReport(monthlyReport);
+		responseObject.setObjective(objective);
+		responseObject.setFollowingList(followingList);
 		
 		System.out.println(responseObject);
 		
