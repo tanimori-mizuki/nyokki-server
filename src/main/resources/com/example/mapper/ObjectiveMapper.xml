@@ -12,6 +12,14 @@
     <result column="objective" property="objective" jdbcType="VARCHAR" />
     <result column="objective_month" property="objectiveMonth" jdbcType="DATE" />
   </resultMap>
+  
+  <!-- userIdで1件検索を行う -->
+  <select id="findByUserId" resultType="com.example.domain.DailyReport" resultMap="BaseResultMap">
+  	  	select id,user_id,objective,objective_month
+		from objectives
+		where user_id=#{userId};
+  </select>
+  
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
