@@ -19,7 +19,7 @@ import com.example.service.RegisterUserService;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class RegisterUserController {
 
 	@Autowired
