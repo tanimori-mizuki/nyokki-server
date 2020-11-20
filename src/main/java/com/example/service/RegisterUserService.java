@@ -1,5 +1,8 @@
 package com.example.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +33,15 @@ public class RegisterUserService {
 	 */
 	public User insertGoogleAccount(RegisterUserForm form) {
 		
+		System.out.println("ログインユーザName：" + form.getName());
+		System.out.println("ログインユーザGmail：" + form.getGmail());
 		User loginUser = new User();
 		BeanUtils.copyProperties(form, loginUser);
-		System.out.println(loginUser);
+		loginUser.setContinuationDays(0);
+		loginUser.setFirstdayContinuation(new Date());
+		
+		String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(loginUser.getFirstdayContinuation());
+		System.out.println("登録日" + date);
 		
 		// usersテーブルへのインサート
 		userMapper.insertSelective(loginUser);
@@ -40,6 +49,7 @@ public class RegisterUserService {
 		// gmailでユーザを検索
 		User newLoginUser = new User();
 		newLoginUser = userMapper.findByGmail(loginUser.getGmail());
+		System.out.println("再検索ユーザId：" + newLoginUser.getId());
 		
 		return newLoginUser;
 		
