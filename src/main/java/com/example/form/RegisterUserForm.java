@@ -1,5 +1,8 @@
 package com.example.form;
 
+import lombok.Data;
+
+@Data
 public class RegisterUserForm {
 
 	/** ログインしたGoogleアカウント名 */
