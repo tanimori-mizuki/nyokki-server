@@ -31,7 +31,7 @@ public class GetResponseObjectController {
 	@GetMapping("/Information")
 	public ResponseObject getInformation(@RequestParam Map<String, String> params) {
 		ResponseObject responseObject = new ResponseObject();
-		System.out.println(params.get("gmail"));
+		System.out.println("ログインに必要な情報ID" + params.get("gmail"));
 		responseObject = getResponseObjectService.findAllInformation(params.get("gmail"));
 		
 		return responseObject;

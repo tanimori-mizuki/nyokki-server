@@ -60,32 +60,24 @@ public class GetResponseObjectService {
 		
 		// ログインユーザ
 		User loginUser = userMapper.findByGmail(gmail);
-		System.out.println(loginUser);
-		System.out.println(loginUser.getId());
 		
 		// ユーザリスト
 		List<User> userList = userMapper.findAll();
-		System.out.println(userList);
 		
 		// Todoリスト
 		List<Todo> todoList = todoMapper.findAll();
-		System.out.println(todoList);
 		
 		// 日報情報
 		DailyReport dailyReport = dailyReportMapper.findByUserId(loginUser.getId());
-		System.out.println(dailyReport);
 		
 		// 月報情報
 		MonthlyReport monthlyReport = monthlyReportMapper.findByUserId(loginUser.getId());
-		System.out.println(monthlyReport);
 		
 		// 目標情報
 		Objective objective = objectiveMapper.findByUserId(loginUser.getId());
-		System.out.println(objective);
 		
 		// フォロー一覧情報
 		List<Following>followingList = followingMapper.findAll();
-		System.out.println(followingList);
 		
 		// responseObjectに詰める処理
 		responseObject.setLoginUser(loginUser);
@@ -95,8 +87,6 @@ public class GetResponseObjectService {
 		responseObject.setMonthlyReport(monthlyReport);
 		responseObject.setObjective(objective);
 		responseObject.setFollowingList(followingList);
-		
-		System.out.println(responseObject);
 		
 		return responseObject;
 	}
