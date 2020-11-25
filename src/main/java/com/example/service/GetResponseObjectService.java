@@ -65,7 +65,7 @@ public class GetResponseObjectService {
 		List<User> userList = userMapper.findAll();
 		
 		// Todoリスト
-		List<Todo> todoList = todoMapper.findAll();
+		List<Todo> todoList = todoMapper.findAll(loginUser.getId());
 		
 		// 日報情報
 		DailyReport dailyReport = dailyReportMapper.findByUserId(loginUser.getId());
