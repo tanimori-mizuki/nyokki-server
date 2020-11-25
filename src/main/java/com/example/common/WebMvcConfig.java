@@ -22,10 +22,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	 * @param registry CORSの許可一覧
 	 *
 	 */
+	
+	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		System.out.println("registry:" + registry);
-		registry.addMapping("/**").allowedOrigins(envConfig.getOriginUrl());
+		registry.addMapping("/**").allowedOrigins("http://localhost:8888");
 
 	}
 
