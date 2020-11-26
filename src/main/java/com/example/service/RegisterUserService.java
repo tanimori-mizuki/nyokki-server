@@ -39,6 +39,7 @@ public class RegisterUserService {
 		BeanUtils.copyProperties(form, loginUser);
 		loginUser.setContinuationDays(0);
 		loginUser.setFirstdayContinuation(new Date());
+		loginUser.setLevelAchievement(0);
 		
 		String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(loginUser.getFirstdayContinuation());
 		System.out.println("登録日" + date);
