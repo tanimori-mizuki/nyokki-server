@@ -10,23 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Todo;
-import com.example.form.RegisterTodoForm;
-import com.example.service.RegisterTodoService;
+import com.example.form.UpdateTodoForm;
+import com.example.service.UpdateTodoService;
 
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/get")
-public class RegisterTodoController {
-	@Autowired
-	private RegisterTodoService registerTodoService;
+public class UpdateTodoController {
 
-	@PostMapping("/registerToDo")
-	public List<Todo> RegisterTodo(@RequestBody(required = false) RegisterTodoForm form) {
-		List<Todo> todoList = registerTodoService.RegisterTodo(form);
-		for (Todo todo : todoList) {
-			System.out.println(todo.getTask());
-		}
+	@Autowired
+	private UpdateTodoService updateTodoService;
+
+	@PostMapping("/updateToDo")
+	public List<Todo> updateTodo(@RequestBody(required = false) UpdateTodoForm form) {
+
+		List<Todo> todoList = updateTodoService.updateTodo(form);
+
 		return todoList;
+
 	}
 
 }

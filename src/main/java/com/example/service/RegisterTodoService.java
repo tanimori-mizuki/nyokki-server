@@ -20,9 +20,9 @@ public class RegisterTodoService {
 	@Autowired
 	private TodoMapper todoMapper;
 
-	public void RegisterTodo(RegisterTodoForm form) {
+	public List<Todo> RegisterTodo(RegisterTodoForm form) {
 
-		for (int i = 0; i <form.getTodos().size(); i++) {
+		for (int i = 0; i < form.getTodos().size(); i++) {
 			Todo todo = new Todo();
 			Date date = new Date();
 			todo.setRegistrationDate(date);
@@ -31,6 +31,8 @@ public class RegisterTodoService {
 			todo.setTask(form.getTodos().get(i).getText());
 			todoMapper.insertSelective(todo);
 		}
+		List<Todo> todoList = todoMapper.findAll(form.getLoginUser().getId());
+		return todoList;
 	}
 
 }
