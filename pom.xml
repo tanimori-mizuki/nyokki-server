@@ -47,6 +47,12 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<!-- Firebaseの設定 -->
+		<dependency>
+  			<groupId>com.google.firebase</groupId>
+  			<artifactId>firebase-admin</artifactId>
+  			<version>7.0.1</version>
+		</dependency>
 		<!-- lombokの設定 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
