@@ -21,17 +21,19 @@ public class RegisterTodoService {
 	private TodoMapper todoMapper;
 
 	public List<Todo> RegisterTodo(RegisterTodoForm form) {
-
+		Date date = new Date();
+		Integer status = 1;
 		for (int i = 0; i < form.getTodos().size(); i++) {
+			System.out.println(form.getTodos().get(i).getTask());
+			// Todo todo =todoMapper.selectByTask(form.getTodos().get(i).getTask());
 			Todo todo = new Todo();
-			Date date = new Date();
 			todo.setRegistrationDate(date);
 			todo.setStatus(1);
 			todo.setUserId(form.getLoginUser().getId());
-			todo.setTask(form.getTodos().get(i).getText());
+			todo.setTask(form.getTodos().get(i).getTask());
 			todoMapper.insertSelective(todo);
 		}
-		List<Todo> todoList = todoMapper.findAll(form.getLoginUser().getId());
+		List<Todo> todoList = todoMapper.todosFindByDayAndStatusAndUserId(date, status, form.getLoginUser().getId());
 		return todoList;
 	}
 

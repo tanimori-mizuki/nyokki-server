@@ -23,9 +23,6 @@ public class RegisterTodoController {
 	@PostMapping("/registerToDo")
 	public List<Todo> RegisterTodo(@RequestBody(required = false) RegisterTodoForm form) {
 		List<Todo> todoList = registerTodoService.RegisterTodo(form);
-		for (Todo todo : todoList) {
-			System.out.println(todo.getTask());
-		}
 		return todoList;
 	}
 
