@@ -23,9 +23,7 @@ public class UpdateTodoController {
 
 	@PostMapping("/updateToDo")
 	public List<Todo> updateTodo(@RequestBody(required = false) UpdateTodoForm form) {
-
 		List<Todo> todoList = updateTodoService.updateTodo(form);
-
 		return todoList;
 
 	}

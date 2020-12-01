@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,12 @@ public class UpdateTodoService {
 	public List<Todo> updateTodo(UpdateTodoForm form) {
 		for (int i = 0; i < form.getTodos().size(); i++) {
 			Todo todo = todoMapper.selectByPrimaryKey(form.getTodos().get(i).getId());
-			todo.setStatus(2);
-			System.out.println(todo);
+			todo.setStatus(form.getTodos().get(i).getStatus());
 			todoMapper.updateByPrimaryKey(todo);
 		}
-		List<Todo> todoList = todoMapper.findAll(form.getLoginUser().getId());
+		Date date = new Date();
+		List<Todo> todoList = todoMapper.findAll(form.getLoginUser().getId(), date);
 		return todoList;
-
 	}
 
 };
