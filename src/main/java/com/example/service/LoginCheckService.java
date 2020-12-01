@@ -15,8 +15,6 @@ import com.example.domain.User;
 @Transactional
 public class LoginCheckService {
 	
-	public User loginCheck(String idToken) {
-		
-	}
+
 
 }
