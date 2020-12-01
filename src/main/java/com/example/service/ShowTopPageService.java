@@ -41,7 +41,7 @@ public class ShowTopPageService {
 
 	public ResponseObject showTopPage() {
 		List<User> userList = userMapper.findAll();
-		List<Todo> todoList = todoMapper.findAll();
+		//List<Todo> todoList = todoMapper.findAll();
 		List<Following> followingList = followingMapper.findAll();
 		DailyReport dailyReport = dailyReportMapper.selectByPrimaryKey(1);
 		MonthlyReport monthlyReport = monthlyReportMapper.selectByPrimaryKey(1);
@@ -49,7 +49,7 @@ public class ShowTopPageService {
 	
 		ResponseObject responseObject = new ResponseObject();
 		responseObject.setUserList(userList);
-		responseObject.setTodoList(todoList);
+		//responseObject.setTodoList(todoList);
 		responseObject.setFollowingList(followingList);
 		responseObject.setDailyReport(dailyReport);
 		responseObject.setMonthlyReport(monthlyReport);
@@ -62,11 +62,11 @@ public class ShowTopPageService {
 			System.out.println(userList.get(i).getName());
 			System.out.println(userList.get(i).getGmail());			
 		}
-		System.out.println("todoリスト" + todoList);
-		for (int i = 0; i < todoList.size(); i++) {
-			System.out.println(todoList.get(i).getId());
-			System.out.println(todoList.get(i).getTask());
-		}
+//		System.out.println("todoリスト" + todoList);
+//		for (int i = 0; i < todoList.size(); i++) {
+//			System.out.println(todoList.get(i).getId());
+//			System.out.println(todoList.get(i).getTask());
+//		}
 		System.out.println("ユーザーリスト" + followingList);
 		for (int i = 0; i < followingList.size(); i++) {
 			System.out.println(followingList.get(i));

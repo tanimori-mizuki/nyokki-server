@@ -16,7 +16,7 @@
   
    <!-- 手動で入力したSql -->
   <select id="findAll" resultType="com.example.domain.Todo" resultMap="BaseResultMap">
-  	select id, user_id, task, status, registration_date from todoes order by id
+  	select id, user_id, task, status, registration_date from todoes WHERE user_id = #{userId} AND status = 1  order by id
   </select>
   <!--ここまで  -->
   
