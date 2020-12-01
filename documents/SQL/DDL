@@ -15,6 +15,7 @@ id serial NOT NULL PRIMARY KEY,
 user_id serial NOT NULL REFERENCES users(id),
 task varchar(60)  NOT NULL,
 status integer NOT NULL DEFAULT 1,
+daily_report_id Integer ,
 registration_date date NOT NULL);
 
 --日報テーブル
@@ -22,7 +23,6 @@ DROP TABLE IF EXISTS daily_reports;
 CREATE TABLE daily_reports(
 id serial NOT NULL PRIMARY KEY,
 user_id serial NOT NULL REFERENCES users(id),
-todo_id serial NOT NULL REFERENCES todoes(id),
 today_report varchar(300) NOT NULL,
 level_achievementlevel_achievement integer NOT NULL,
 impressions varchar(1000) NOT NULL,
