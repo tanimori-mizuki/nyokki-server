@@ -12,6 +12,15 @@ import com.example.dto.ResponseDairyReportObject;
 import com.example.form.showDairyReportForm;
 import com.example.service.ShowDairyReportService;
 
+/**
+ * 日報登録画面への遷移用のコントローラ.
+ * @author ashibe
+ *
+ */
+/**
+ * @author ashibe
+ *
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("/get")
@@ -19,11 +28,16 @@ public class ShowDairyReportController {
 	@Autowired
 	private ShowDairyReportService showDairyRepostService;
 
+	/**
+	 * 日報登録画面への遷移
+	 * 
+	 * @param form
+	 * @return
+	 */
 	@GetMapping("/dairyReport")
 	public ResponseDairyReportObject showDairyReport(@RequestBody(required = false) showDairyReportForm form) {
-		//System.out.println(form.getLoginUser().getId());
-		ResponseDairyReportObject responseDairyReportObject = showDairyRepostService
-				.showDairyReport(4);
+		// System.out.println(form.getLoginUser().getId());
+		ResponseDairyReportObject responseDairyReportObject = showDairyRepostService.showDairyReport(4);
 		return responseDairyReportObject;
 	}
 

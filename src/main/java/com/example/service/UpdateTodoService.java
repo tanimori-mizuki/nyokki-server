@@ -11,12 +11,24 @@ import com.example.domain.Todo;
 import com.example.form.UpdateTodoForm;
 import com.example.mapper.TodoMapper;
 
+/**
+ * Todo編集用のサービス
+ * 
+ * @author ashibe
+ *
+ */
 @Service
 @Controller
 public class UpdateTodoService {
 	@Autowired
 	private TodoMapper todoMapper;
 
+	/**
+	 * todoのステータスを変更
+	 * 
+	 * @param form
+	 * @return Todoリスト
+	 */
 	public List<Todo> updateTodo(UpdateTodoForm form) {
 		for (int i = 0; i < form.getTodos().size(); i++) {
 			Todo todo = todoMapper.selectByPrimaryKey(form.getTodos().get(i).getId());

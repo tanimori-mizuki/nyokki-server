@@ -24,6 +24,12 @@ public class ShowDairyReportService {
 	@Autowired
 	private TodoMapper todoMapper;
 
+	/**
+	 * 日報ページ表示に必要な情報を取得
+	 * 
+	 * @param userId
+	 * @return　ResponseDairyReportObject
+	 */
 	public ResponseDairyReportObject showDairyReport(Integer userId) {
 
 		ResponseDairyReportObject responseDairyReportObject = new ResponseDairyReportObject();
