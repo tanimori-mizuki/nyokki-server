@@ -68,7 +68,7 @@ public class GetResponseObjectService {
 		Date date = new Date();
 		List<Todo> todoList = todoMapper.findAll(loginUser.getId(), date);
 		// 日報情報
-		DailyReport dailyReport = dailyReportMapper.findByUserId(loginUser.getId());
+		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, loginUser.getId());
 
 		// 月報情報
 		MonthlyReport monthlyReport = monthlyReportMapper.findByUserId(loginUser.getId());
