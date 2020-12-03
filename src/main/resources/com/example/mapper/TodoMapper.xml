@@ -26,10 +26,10 @@
 	<select id="todosFindByDayAndStatusAndUserId"
 		resultType="com.example.domain.Todo" resultMap="BaseResultMap">
 		select id, user_id,
-		task, status, registration_date from todoes WHERE
+		task, status, registration_date,daily_report_id from todoes WHERE
 		user_id = #{userId}
 		AND status = #{status} AND
-		registration_date=#{date} order by id
+		registration_date=#{date} order by id 
 	</select>
 
 	<select id="selectByTask" resultType="com.example.domain.Todo"
