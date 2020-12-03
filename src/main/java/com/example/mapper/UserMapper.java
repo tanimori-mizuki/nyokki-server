@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.example.domain.User;
 import com.example.domain.UserExample;
+import com.example.dto.AllUserDto;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -31,6 +33,14 @@ public interface UserMapper {
 	 * @return ユーザ情報
 	 */
 	User findByGmail(String gmail);
+	
+	/**
+	 * ログインユーザIDで
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<AllUserDto> usersInformation(Integer id);
 	
     int countByExample(UserExample example);
 

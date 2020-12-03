@@ -77,7 +77,7 @@ public class GetResponseObjectService {
 		Objective objective = objectiveMapper.findByUserId(loginUser.getId());
 		
 		// フォロー一覧情報
-		List<Following>followingList = followingMapper.findAll();
+		List<Following>followingList = followingMapper.findByUserId(loginUser.getId());
 		
 		// responseObjectに詰める処理
 		responseObject.setLoginUser(loginUser);

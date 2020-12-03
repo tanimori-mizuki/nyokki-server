@@ -13,7 +13,16 @@
     <result column="continuation_days" property="continuationDays" jdbcType="INTEGER" />
     <result column="firstday_continuation" property="firstdayContinuation" jdbcType="DATE" />
     <result column="level_achievement" property="levelAchievement" jdbcType="INTEGER" />
+   <!--  <collection property="followings" ofType="com.example.domain.Following"> -->
+    <!-- </collection> -->
   </resultMap>
+  
+  <resultMap id="followingResultMap" type="com.example.domain.Following">
+   	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="follow_flag" property="followFlag" jdbcType="INTEGER" />
+    <result column="following_id" property="followingId" jdbcType="INTEGER" />
+    <result column="followed_id" property="followedId" jdbcType="INTEGER" />
+   </resultMap>
   
   <!-- 手動で入力したSql -->
   <select id="findAll" resultType="com.example.domain.User" resultMap="BaseResultMap">
@@ -21,15 +30,29 @@
   </select>
   <select id="findAllUser" resultType="com.example.domain.User">
   	select id,name,continuation_days,firstday_continuation,level_achievement from users order by id
-  </select>
-  <!--ここまで  -->
-  
+  </select>  
   <!-- gmailでユーザを検索する -->
   <select id="findByGmail" resultType="com.example.domain.User" resultMap="BaseResultMap">
   	select id,name,gmail,continuation_days,firstday_continuation,level_achievement
 	from users
 	where gmail = #{gmail};
   </select>
+  <!-- フォローのステータスを表示する（フォローの件数を表示する） -->
+ <select id="usersInformation" resultType="com.example.dto.AllUserDto">
+	SELECT 
+	u.id AS id,
+	u.name AS name,
+	u.continuation_days AS continuationDays,
+  	f.id AS followingsId,
+  	f.follow_flag AS followFlag,
+  	f.following_id AS followingId,
+  	f.followed_id AS followedId
+  	from users u 
+  	LEFT OUTER JOIN followings f 
+  	ON u.id = f.followed_id 
+  	WHERE f.following_id= #{followingId};  	
+  </select>
+  <!--ここまで  -->
   
   
   <sql id="Example_Where_Clause" >
@@ -320,3 +343,5 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
+
+  

@@ -12,10 +12,14 @@
     <result column="following_id" property="followingId" jdbcType="INTEGER" />
     <result column="followed_id" property="followedId" jdbcType="INTEGER" />
   </resultMap>
-  
+    
    <!-- 手動で入力したSql -->
   <select id="findAll" resultType="com.example.domain.Following" resultMap="BaseResultMap">
   	select id,follow_flag,following_id,followed_id from followings order by id
+  </select>
+     <!-- userIdで検索を行う -->
+  <select id="findByUserId" resultType="com.example.domain.Following" resultMap="BaseResultMap">
+  	select id,follow_flag,following_id,followed_id from followings where following_id=#{userId};
   </select>
   <!--ここまで  -->
   
