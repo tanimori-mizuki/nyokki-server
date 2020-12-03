@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.example.domain.DailyReport;
 import com.example.domain.DailyReportExample;
+
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -9,6 +11,14 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface DailyReportMapper {
+
+	/**
+	 * 日付とユーザーIDで日報を検索する。
+	 * 
+	 * @param date
+	 * @return
+	 */
+	DailyReport findByDate(Date date, Integer userId);
 
 	/**
 	 * ユーザIdで1件検索を行うメソッド.

@@ -31,7 +31,6 @@ public class ShowDairyReportService {
 	 * @return　ResponseDairyReportObject
 	 */
 	public ResponseDairyReportObject showDairyReport(Integer userId) {
-
 		ResponseDairyReportObject responseDairyReportObject = new ResponseDairyReportObject();
 		Date date = new Date();
 		// 未完了のList

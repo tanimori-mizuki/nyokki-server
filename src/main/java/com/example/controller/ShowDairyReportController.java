@@ -36,7 +36,6 @@ public class ShowDairyReportController {
 	 */
 	@GetMapping("/dairyReport")
 	public ResponseDairyReportObject showDairyReport(@RequestBody(required = false) showDairyReportForm form) {
-		// System.out.println(form.getLoginUser().getId());
 		ResponseDairyReportObject responseDairyReportObject = showDairyRepostService.showDairyReport(4);
 		return responseDairyReportObject;
 	}

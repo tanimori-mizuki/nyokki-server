@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.RegisterDailyReportForm;
+import com.example.service.RegisterDailyReportService;
 
 /**
  * 日報登録のコントローラ
+ * 
  * @author ashibe
  *
  */
@@ -18,16 +21,17 @@ import com.example.form.RegisterDailyReportForm;
 @RequestMapping(value = "/get")
 public class RegisterDailyReportController {
 
+	@Autowired
+	private RegisterDailyReportService registerDailyReportService;
+
 	/**
 	 * 日報登録
+	 * 
 	 * @param form
 	 */
 	@PostMapping("/registerdailyReport")
 	public void RegisterDairyReport(@RequestBody(required = false) RegisterDailyReportForm form) {
-		System.out.println("ユーザーID"+form.getLoginUser().getId());
-		System.out.println("所感"+form.getImpression());
-		System.out.println(form.getCompleteTodoList().get(0));
-
+		registerDailyReportService.registerDailyReport(form);
 	}
 
 }
