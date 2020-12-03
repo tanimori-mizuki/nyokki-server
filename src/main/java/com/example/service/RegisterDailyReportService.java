@@ -35,7 +35,7 @@ public class RegisterDailyReportService {
 	 * 
 	 * @param form
 	 */
-	public void registerDailyReport(RegisterDailyReportForm form) {
+	public DailyReport registerDailyReport(RegisterDailyReportForm form) {
 
 		Date date = new Date();
 		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, form.getLoginUser().getId());
@@ -74,6 +74,9 @@ public class RegisterDailyReportService {
 			updateTodo.setDailyReportId(dailyReportId);
 			todoMapper.updateByPrimaryKey(updateTodo);
 		}
+
+		dailyReport = dailyReportMapper.selectByPrimaryKey(dailyReportId);
+		return dailyReport;
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.DailyReport;
 import com.example.form.RegisterDailyReportForm;
 import com.example.service.RegisterDailyReportService;
 
@@ -30,8 +31,9 @@ public class RegisterDailyReportController {
 	 * @param form
 	 */
 	@PostMapping("/registerdailyReport")
-	public void RegisterDairyReport(@RequestBody(required = false) RegisterDailyReportForm form) {
-		registerDailyReportService.registerDailyReport(form);
+	public DailyReport RegisterDairyReport(@RequestBody(required = false) RegisterDailyReportForm form) {
+		DailyReport dailyReport = registerDailyReportService.registerDailyReport(form);
+		return dailyReport;
 	}
 
 }
