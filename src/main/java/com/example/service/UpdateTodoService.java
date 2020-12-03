@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Todo;
 import com.example.form.UpdateTodoForm;
@@ -18,7 +18,7 @@ import com.example.mapper.TodoMapper;
  *
  */
 @Service
-@Controller
+@Transactional
 public class UpdateTodoService {
 	@Autowired
 	private TodoMapper todoMapper;
