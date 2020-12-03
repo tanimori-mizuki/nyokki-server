@@ -10,30 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Todo;
-import com.example.form.RegisterTodoForm;
-import com.example.service.RegisterTodoService;
+import com.example.form.UpdateTodoForm;
+import com.example.service.UpdateTodoService;
 
 /**
- * todo登録のコントローラ
+ * todo編集（完了未完了）のコントローラ
+ * 
  * @author ashibe
  *
  */
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/get")
-public class RegisterTodoController {
+public class UpdateTodoController {
+
 	@Autowired
-	private RegisterTodoService registerTodoService;
+	private UpdateTodoService updateTodoService;
 
 	/**
-	 * todo登録
+	 * Todo編集
+	 * 
 	 * @param form
 	 * @return
 	 */
-	@PostMapping("/registerToDo")
-	public List<Todo> RegisterTodo(@RequestBody(required = false) RegisterTodoForm form) {
-		List<Todo> todoList = registerTodoService.RegisterTodo(form);
+	@PostMapping("/updateToDo")
+	public List<Todo> updateTodo(@RequestBody(required = false) UpdateTodoForm form) {
+		List<Todo> todoList = updateTodoService.updateTodo(form);
 		return todoList;
+
 	}
 
 }

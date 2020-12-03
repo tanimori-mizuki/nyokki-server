@@ -24,7 +24,6 @@ import com.example.mapper.UserMapper;
 @Transactional
 public class ShowTopPageService {
 
-	
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
@@ -37,58 +36,54 @@ public class ShowTopPageService {
 	private MonthlyReportMapper monthlyReportMapper;
 	@Autowired
 	private ObjectiveMapper objectiveMapper;
-	
 
 	public ResponseObject showTopPage() {
 		List<User> userList = userMapper.findAll();
-		List<Todo> todoList = todoMapper.findAll();
+		// List<Todo> todoList = todoMapper.findAll();
 		List<Following> followingList = followingMapper.findAll();
 		DailyReport dailyReport = dailyReportMapper.selectByPrimaryKey(1);
 		MonthlyReport monthlyReport = monthlyReportMapper.selectByPrimaryKey(1);
 		Objective objective = objectiveMapper.selectByPrimaryKey(1);
-	
+
 		ResponseObject responseObject = new ResponseObject();
 		responseObject.setUserList(userList);
-		responseObject.setTodoList(todoList);
+		// responseObject.setTodoList(todoList);
 		responseObject.setFollowingList(followingList);
 		responseObject.setDailyReport(dailyReport);
 		responseObject.setMonthlyReport(monthlyReport);
 		responseObject.setObjective(objective);
-		
+
 		System.out.println("ユーザーリスト" + userList);
 		for (int i = 0; i < userList.size(); i++) {
 			System.out.println(userList.get(i));
 			System.out.println(userList.get(i).getId());
 			System.out.println(userList.get(i).getName());
-			System.out.println(userList.get(i).getGmail());			
+			System.out.println(userList.get(i).getGmail());
 		}
-		System.out.println("todoリスト" + todoList);
-		for (int i = 0; i < todoList.size(); i++) {
-			System.out.println(todoList.get(i).getId());
-			System.out.println(todoList.get(i).getTask());
-		}
+//		System.out.println("todoリスト" + todoList);
+//		for (int i = 0; i < todoList.size(); i++) {
+//			System.out.println(todoList.get(i).getId());
+//			System.out.println(todoList.get(i).getTask());
+//		}
 		System.out.println("ユーザーリスト" + followingList);
 		for (int i = 0; i < followingList.size(); i++) {
 			System.out.println(followingList.get(i));
 			System.out.println(followingList.get(i).getId());
 			System.out.println(followingList.get(i).getFollowFlag());
-			
-		System.out.println("日報データ一行分" + dailyReport);
-		System.out.println(dailyReport.getId()+" "+dailyReport.getTodayReport());
-		System.out.println(dailyReport.toString());
-		
-		System.out.println("月報データ一行分" + monthlyReport);
-		System.out.println(monthlyReport.getId()+" "+monthlyReport.getImpressions());
-		System.out.println(monthlyReport.toString());
-		
-		System.out.println("目標データ一行分" + objective);
-		System.out.println(objective.getId()+" "+objective.getObjective());
-		System.out.println(objective.toString());
+
+			System.out.println("日報データ一行分" + dailyReport);
+			System.out.println(dailyReport.toString());
+
+			System.out.println("月報データ一行分" + monthlyReport);
+			System.out.println(monthlyReport.getId() + " " + monthlyReport.getImpressions());
+			System.out.println(monthlyReport.toString());
+
+			System.out.println("目標データ一行分" + objective);
+			System.out.println(objective.getId() + " " + objective.getObjective());
+			System.out.println(objective.toString());
 		}
-		
-		
+
 		return responseObject;
 	}
-	
-	
+
 }

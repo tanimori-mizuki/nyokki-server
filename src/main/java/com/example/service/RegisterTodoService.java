@@ -13,6 +13,12 @@ import com.example.domain.Todo;
 import com.example.form.RegisterTodoForm;
 import com.example.mapper.TodoMapper;
 
+/**
+ * Todo登録のサービス
+ * 
+ * @author ashibe
+ *
+ */
 @Service
 @Transactional
 public class RegisterTodoService {
@@ -20,17 +26,25 @@ public class RegisterTodoService {
 	@Autowired
 	private TodoMapper todoMapper;
 
-	public void RegisterTodo(RegisterTodoForm form) {
-
-		for (int i = 0; i <form.getTodos().size(); i++) {
+	/**
+	 * Todo登録処理
+	 * 
+	 * @param form
+	 * @return todo一覧
+	 */
+	public List<Todo> RegisterTodo(RegisterTodoForm form) {
+		Date date = new Date();
+		Integer status = 1;
+		for (int i = 0; i < form.getTodos().size(); i++) {
 			Todo todo = new Todo();
-			Date date = new Date();
 			todo.setRegistrationDate(date);
-			todo.setStatus(1);
+			todo.setStatus(status);
 			todo.setUserId(form.getLoginUser().getId());
-			todo.setTask(form.getTodos().get(i).getText());
+			todo.setTask(form.getTodos().get(i).getTask());
 			todoMapper.insertSelective(todo);
 		}
+		List<Todo> todoList = todoMapper.todosFindByDayAndStatusAndUserId(date, status, form.getLoginUser().getId());
+		return todoList;
 	}
 
 }

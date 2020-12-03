@@ -54,7 +54,7 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Integer id);   //アップデートしたものをリターン
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 
@@ -62,5 +62,5 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(User record);  //アップデートする
 }
