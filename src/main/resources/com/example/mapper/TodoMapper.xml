@@ -21,7 +21,7 @@
 		select id, user_id, task, status, registration_date,daily_report_id from
 		todoes WHERE
 		user_id = #{userId} AND registration_date=#{date} order by
-		id
+		id 
 	</select>
 
 	<select id="todosFindByDayAndStatusAndUserId"

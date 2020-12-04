@@ -43,7 +43,7 @@ public class RegisterTodoService {
 			todo.setTask(form.getTodos().get(i).getTask());
 			todoMapper.insertSelective(todo);
 		}
-		List<Todo> todoList = todoMapper.todosFindByDayAndStatusAndUserId(date, status, form.getLoginUser().getId());
+		List<Todo> todoList = todoMapper.findAll(form.getLoginUser().getId(),date);
 		return todoList;
 	}
 
