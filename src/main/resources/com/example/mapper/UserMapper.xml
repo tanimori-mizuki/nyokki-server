@@ -43,16 +43,15 @@
 	u.id AS id,
 	u.name AS name,
 	u.continuation_days AS continuationDays,
-  	f.id AS followingsId,
-  	f.follow_flag AS followFlag,
-  	f.following_id AS followingId,
-  	f.followed_id AS followedId
-  	from users u 
-  	LEFT OUTER JOIN followings f 
-  	ON u.id = f.followed_id	
-  	WHERE u.id!=5 OR f.following_id =5
-  	<!-- WHERE f.following_id =5 OR f.following_id IS null -->
-  	ORDER BY u.id
+ 	f.id AS followingsId,
+ 	f.follow_flag AS followFlag,
+ 	f.following_id AS followingId,
+ 	f.followed_id AS followedId
+ 	from users u 
+ 	LEFT JOIN  (SELECT * from followings WHERE following_id=4) f
+ 	ON u.id = f.followed_id	
+ 	WHERE u.id!=4 AND f.following_id =4 OR f.following_id IS null
+ORDER BY u.id
   </select>
   <!--ここまで  -->
   

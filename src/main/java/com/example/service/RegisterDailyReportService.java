@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import com.example.domain.DailyReport;
 import com.example.domain.Todo;
+import com.example.dto.DailyReportDto;
 import com.example.form.RegisterDailyReportForm;
 import com.example.mapper.DailyReportMapper;
 import com.example.mapper.TodoMapper;
@@ -68,14 +70,27 @@ public class RegisterDailyReportService {
 			// 更新したした日報のIDを取得
 			dailyReportId = dailyReport.getId();// 最初に取得したdairyReportのId
 		}
+
 		// todoを日報に結び付け
 		for (Todo todo : form.getCompleteTodoList()) {
-			Todo updateTodo = todoMapper.selectByPrimaryKey(todo.getId());
-			updateTodo.setDailyReportId(dailyReportId);
-			todoMapper.updateByPrimaryKey(updateTodo);
+			// 既に登録されているtodoはステータスを更新
+			if (!StringUtils.isEmpty(todo.getId())) {
+				Todo updateTodo = todoMapper.selectByPrimaryKey(todo.getId());
+				updateTodo.setDailyReportId(dailyReportId);
+				todoMapper.updateByPrimaryKey(updateTodo);
+			} else {// 新規のtodoは登録
+				Todo insertTodo = new Todo();
+				insertTodo.setUserId(form.getLoginUser().getId());
+				insertTodo.setDailyReportId(dailyReportId);
+				insertTodo.setRegistrationDate(date);
+				insertTodo.setTask(todo.getTask());
+				insertTodo.setStatus(2);
+				todoMapper.insertSelective(insertTodo);
+			}
 		}
 
 		dailyReport = dailyReportMapper.selectByPrimaryKey(dailyReportId);
+
 		return dailyReport;
 	}
 
