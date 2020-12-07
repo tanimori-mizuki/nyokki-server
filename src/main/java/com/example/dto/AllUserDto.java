@@ -11,18 +11,25 @@ import lombok.Data;
 @Data
 public class AllUserDto {
 
+	/** ユーザID　*/
 	private Integer id;
 
+	/** 名前　*/
 	private String name;
 
+	/** 継続日数　*/
 	private Integer continuationDays;
 	
+	/** フォローID　*/
 	private Integer followingsId;
 
+	/** フォローフラグ　*/
 	private Boolean followFlag;
 
+	/** フォローする側のID　*/
 	private Integer followingId;
 
+	/** フォローされる側のID　*/
 	private Integer followedId;
 
 }

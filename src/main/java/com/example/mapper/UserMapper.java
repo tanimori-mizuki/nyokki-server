@@ -35,12 +35,20 @@ public interface UserMapper {
 	User findByGmail(String gmail);
 	
 	/**
-	 * ログインユーザIDで
+	 * ログインユーザIDで他のユーザを検索
 	 * 
-	 * @param id
-	 * @return
+	 * @param id　ログインユーザID
+	 * @return　全ユーザ情報
 	 */
 	List<AllUserDto> usersInformation(Integer id);
+	
+	/**
+	 * フォロー中のユーザリストを取得
+	 * 
+	 * @param id　ログインユーザID
+	 * @return　フォロー中のユーザ情報
+	 */
+	List<AllUserDto> followUserList(Integer id);
 	
     int countByExample(UserExample example);
 
