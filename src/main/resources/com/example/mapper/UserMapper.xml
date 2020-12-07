@@ -52,6 +52,7 @@
  	ON u.id = f.followed_id	
  	WHERE u.id!=#{user.id} AND f.following_id =#{user.id} OR f.following_id IS null
   	ORDER BY u.id
+
   </select>
   <!--ここまで  -->
   
