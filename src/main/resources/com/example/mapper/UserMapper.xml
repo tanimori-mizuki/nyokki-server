@@ -50,7 +50,8 @@
   	from users u 
   	LEFT OUTER JOIN followings f 
   	ON u.id = f.followed_id	
-  	WHERE f.following_id =4 OR f.following_id IS null
+  	WHERE u.id!=5 OR f.following_id =5
+  	<!-- WHERE f.following_id =5 OR f.following_id IS null -->
   	ORDER BY u.id
   </select>
   <!--ここまで  -->
