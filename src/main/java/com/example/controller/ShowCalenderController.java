@@ -15,7 +15,8 @@ public class ShowCalenderController {
 	
 	@GetMapping("/showDailyReports")
 	public void showCalender(@RequestParam Map<String, String> params) {
-		System.out.println("あああ");
+		String date = params.toString();
+		System.out.println("日付を加工:"+ date.substring(3,13));
 	}
 
 }

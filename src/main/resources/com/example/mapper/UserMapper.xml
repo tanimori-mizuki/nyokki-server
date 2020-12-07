@@ -39,19 +39,18 @@
   </select>
   <!-- フォローのステータスを表示する（フォローの件数を表示する） -->
  <select id="usersInformation" resultType="com.example.dto.AllUserDto">
-	SELECT 
+	SELECT
 	u.id AS id,
 	u.name AS name,
 	u.continuation_days AS continuationDays,
-  	f.id AS followingsId,
-  	f.follow_flag AS followFlag,
-  	f.following_id AS followingId,
-  	f.followed_id AS followedId
-  	from users u 
-  	LEFT OUTER JOIN followings f 
-  	ON u.id = f.followed_id	
-  	WHERE u.id!=5 OR f.following_id =5
-  	<!-- WHERE f.following_id =5 OR f.following_id IS null -->
+ 	f.id AS followingsId,
+ 	f.follow_flag AS followFlag,
+ 	f.following_id AS followingId,
+ 	f.followed_id AS followedId
+ 	from users u
+ 	LEFT JOIN  (SELECT * from followings WHERE following_id=#{user.id}) f
+ 	ON u.id = f.followed_id	
+ 	WHERE u.id!=#{user.id} AND f.following_id =#{user.id} OR f.following_id IS null
   	ORDER BY u.id
   </select>
   <!--ここまで  -->
