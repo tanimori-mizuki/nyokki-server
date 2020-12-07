@@ -24,7 +24,7 @@ public class FollowUserController {
 	private FollowUserService followUserService;
 	
 	/**
-	 * フォローテーブルから取得.
+	 * ユーザテーブルとフォローテーブルから全件取得.
 	 * 
 	 * @param form
 	 * @return
@@ -48,6 +48,18 @@ public class FollowUserController {
 		System.out.println("ログインユーザ名前" + form.getLoginUser().getName());
 		
 		followUserService.follow(form);
+	}
+	
+	/**
+	 * ユーザテーブルとフォローテーブルからフォローリストを取得.
+	 * 
+	 * @param form
+	 * @return
+	 */
+	@PostMapping("/followList")
+	public List<AllUserDto> getfollowList(@RequestBody(required=false) FollowUserForm form){
+		System.out.println("getFollowList:"+ form.getLoginUser().getId());
+		return followUserService.getFollowUserList(form.getLoginUser().getId());
 	}
 
 }
