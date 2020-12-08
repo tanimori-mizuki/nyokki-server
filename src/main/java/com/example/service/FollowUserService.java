@@ -39,7 +39,7 @@ public class FollowUserService {
 	 * @return
 	 */
 	public Boolean follow(FollowUserForm form) {
-		
+
 		Following following = new Following();
 		following.setFollowingId(form.getLoginUser().getId());
 		System.out.println("フォローされるID:" + form.getFollowedId());
@@ -48,16 +48,28 @@ public class FollowUserService {
 		System.out.println("インサートされました");
 		return false;
 	}
-	
+
 	/**
 	 * フォロー中のユーザリストを検索する処理.
 	 * 
 	 * @param id
 	 * @return
 	 */
-	public List<AllUserDto> getFollowUserList(Integer id){
-		
+	public List<AllUserDto> getFollowUserList(Integer id) {
+
 		List<AllUserDto> userList = userMapper.followUserList(id);
+		return userList;
+	}
+
+	/**
+	 * フォロワーを検索する処理.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<AllUserDto> getFollowerUserList(Integer id) {
+
+		List<AllUserDto> userList = userMapper.followerUserList(id);
 		return userList;
 	}
 
