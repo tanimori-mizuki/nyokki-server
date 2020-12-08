@@ -41,6 +41,14 @@ public interface UserMapper {
 	 * @return 全ユーザ情報
 	 */
 	List<AllUserDto> usersInformation(Integer id);
+	
+	/**
+	 * フォローリストを全件取得
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<AllUserDto> allFollowList(Integer id);
 
 	/**
 	 * フォロー中のユーザリストを取得

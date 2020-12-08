@@ -48,6 +48,17 @@ public class FollowUserService {
 		System.out.println("インサートされました");
 		return false;
 	}
+	
+	/**
+	 * 全てのフォローリストを検索する.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<AllUserDto> getAllUserList(Integer id){
+		List<AllUserDto> userList = userMapper.allFollowList(id);
+		return userList;
+	}
 
 	/**
 	 * フォロー中のユーザリストを検索する処理.

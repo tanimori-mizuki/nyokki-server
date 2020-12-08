@@ -54,6 +54,21 @@
   	ORDER BY u.id 
   </select>
    <!-- マイページで使用する -->
+     <select id="allFollowList" resultType="com.example.dto.AllUserDto">
+	SELECT
+	u.id AS id,
+	u.name AS name,
+	u.continuation_days AS continuationDays,
+ 	f.id AS followingsId,
+ 	f.follow_flag AS followFlag,
+ 	f.following_id AS followingId,
+ 	f.followed_id AS followedId
+ 	from users u
+ 	LEFT JOIN  followings f
+ 	ON u.id = f.followed_id	
+ 	WHERE f.following_id =#{user.id} 
+  	ORDER BY u.id
+  </select>
  <select id="followUserList" resultType="com.example.dto.AllUserDto">
 	SELECT
 	u.id AS id,

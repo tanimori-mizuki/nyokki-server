@@ -29,7 +29,6 @@ public class FollowUserController {
 	 */
 	@PostMapping("/allUserInformation")
 	public List<AllUserDto> getAllUserInformation(@RequestBody(required = false) FollowUserForm form) {
-		System.out.println("ログインユーザID:" + form.getLoginUser().getId());
 		return followUserService.getAllUserInformation(form.getLoginUser().getId());
 	}
 
@@ -41,24 +40,33 @@ public class FollowUserController {
 	@PostMapping("/followRequest")
 	public void follow(@RequestBody(required = false) FollowUserForm form) {
 
-		System.out.println("通信成功");
-		System.out.println("ログインユーザID" + form.getLoginUser().getId());
-		System.out.println("ログインユーザ名前" + form.getLoginUser().getName());
-
 		followUserService.follow(form);
+		
+		
 	}
 
 	/**
-	 * ユーザテーブルとフォローテーブルからフォローリストを取得.
+	 * ユーザテーブルとフォローテーブルからフォローリストを全件取得.
 	 * 
 	 * @param form
 	 * @return
 	 */
 	@PostMapping("/followList")
-	public List<AllUserDto> getfollowList(@RequestBody(required = false) FollowUserForm form) {
+	public List<AllUserDto> getAllFollowList(@RequestBody(required = false) FollowUserForm form) {
 		System.out.println("getFollowList:" + form.getLoginUser().getId());
-		return followUserService.getFollowUserList(form.getLoginUser().getId());
+		return followUserService.getAllUserList(form.getLoginUser().getId());
 	}
+//	/**
+//	 * ユーザテーブルとフォローテーブルからフォローリストを取得.
+//	 * 
+//	 * @param form
+//	 * @return
+//	 */
+//	@PostMapping("/followList")
+//	public List<AllUserDto> getfollowList(@RequestBody(required = false) FollowUserForm form) {
+//		System.out.println("getFollowList:" + form.getLoginUser().getId());
+//		return followUserService.getFollowUserList(form.getLoginUser().getId());
+//	}
 
 	/**
 	 * ユーザテーブルとフォローテーブルからフォロワーリストを取得.
@@ -68,7 +76,7 @@ public class FollowUserController {
 	 */
 	@PostMapping("/followerList")
 	public List<AllUserDto> getfollowerList(@RequestBody(required = false) FollowUserForm form) {
-		System.out.println("getFollowList:" + form.getLoginUser().getId());
+		System.out.println("getFollowerList:" + form.getLoginUser().getId());
 		return followUserService.getFollowerUserList(form.getLoginUser().getId());
 	}
 }
