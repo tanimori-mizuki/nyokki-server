@@ -8,10 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Following;
 import com.example.dto.AllUserDto;
+import com.example.dto.ResponseFollowObject;
 import com.example.form.FollowUserForm;
 import com.example.mapper.FollowingMapper;
 import com.example.mapper.UserMapper;
 
+/**
+ * フォロー処理とマイページでのフォロー・フォロワー取得を行う
+ * 
+ * @author rinashioda
+ *
+ */
 @Service
 @Transactional
 public class FollowUserService {
@@ -33,6 +40,27 @@ public class FollowUserService {
 	}
 
 	/**
+	 * フォローリストとフォロワーリストを取得する処理.
+	 * 
+	 * @param id ユーザID
+	 * @return フォロー・フォロワー情報
+	 * 
+	 */
+	public ResponseFollowObject getFollowAndFollowerList(Integer userId) {
+
+		ResponseFollowObject responseFollowObject = new ResponseFollowObject();
+
+		List<AllUserDto> followList = userMapper.followUserList(userId);
+		List<AllUserDto> followerList = userMapper.followerUserList(userId);
+
+		responseFollowObject.setFollowerList(followerList);
+		responseFollowObject.setFollowList(followList);
+
+		return responseFollowObject;
+
+	}
+
+	/**
 	 * フォローテーブルにインサートする処理.
 	 * 
 	 * @param form
@@ -47,41 +75,6 @@ public class FollowUserService {
 		followingMapper.insertSelective(following);
 		System.out.println("インサートされました");
 		return false;
-	}
-	
-	/**
-	 * 全てのフォローリストを検索する.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public List<AllUserDto> getAllUserList(Integer id){
-		List<AllUserDto> userList = userMapper.allFollowList(id);
-		return userList;
-	}
-
-	/**
-	 * フォロー中のユーザリストを検索する処理.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public List<AllUserDto> getFollowUserList(Integer id) {
-
-		List<AllUserDto> userList = userMapper.followUserList(id);
-		return userList;
-	}
-
-	/**
-	 * フォロワーを検索する処理.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public List<AllUserDto> getFollowerUserList(Integer id) {
-
-		List<AllUserDto> userList = userMapper.followerUserList(id);
-		return userList;
 	}
 
 }

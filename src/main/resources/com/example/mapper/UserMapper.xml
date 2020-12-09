@@ -64,9 +64,9 @@
  	f.following_id AS followingId,
  	f.followed_id AS followedId
  	from users u
- 	LEFT JOIN  followings f
+ 	LEFT JOIN followings f
  	ON u.id = f.followed_id	
- 	WHERE f.following_id =#{user.id} 
+ 	WHERE f.following_id =#{user.id} OR f.followed_id =#{user.id}
   	ORDER BY u.id
   </select>
  <select id="followUserList" resultType="com.example.dto.AllUserDto">
@@ -95,8 +95,8 @@
  	f.followed_id AS followedId
  	from users u
  	LEFT JOIN  followings f
- 	ON u.id = f.followed_id	
- 	WHERE f.following_id =#{user.id} 
+ 	ON u.id = f.following_id	
+ 	WHERE f.followed_id =#{user.id} 
   	ORDER BY u.id
   </select>
   <!--ここまで  -->

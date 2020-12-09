@@ -62,7 +62,7 @@ public interface UserMapper {
 	 * フォロワーリストを取得
 	 * 
 	 * @param id ログインユーザID
-	 * @return フォロー中のユーザ情報
+	 * @return フォロワーユーザ情報
 	 */
 	List<AllUserDto> followerUserList(Integer id);
 
