@@ -18,7 +18,7 @@
   </resultMap>
   
   <resultMap id="followingResultMap" type="com.example.domain.Following">
-   	<id column="id" property="id" jdbcType="INTEGER" />
+   	<id column="id" property="followingsId" jdbcType="INTEGER" />
     <result column="follow_flag" property="followFlag" jdbcType="INTEGER" />
     <result column="following_id" property="followingId" jdbcType="INTEGER" />
     <result column="followed_id" property="followedId" jdbcType="INTEGER" />
