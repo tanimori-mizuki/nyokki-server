@@ -35,6 +35,16 @@
 		from daily_reports
 		where user_id=#{userId};
 	</select>
+	
+	<!-- １ヶ月分の達成度情報を取得する  -->
+	<select id="findByUserIdAndLevelAchievement"
+		resultType="com.example.domain.DailyReport" resultMap="BaseResultMap">
+		select
+		id,user_id,level_achievementlevel_achievement,impressions,registration_date
+		from daily_reports
+		where user_id=#{userId} and
+		registration_date BETWEEN '2020-11-01' and '2020-11-30';
+	</select>
 
 
 	<!-- ここまで -->
