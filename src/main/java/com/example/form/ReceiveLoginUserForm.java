@@ -5,13 +5,13 @@ import com.example.domain.User;
 import lombok.Data;
 
 /**
- * 日報画面遷移用のフォーム
+ * ログインユーザーを受け取るフォーム
  * 
  * @author ashibe
  *
  */
 @Data
-public class showDairyReportForm {
+public class ReceiveLoginUserForm {
 	/**
 	 * ログインユーザ情報
 	 */

@@ -19,7 +19,7 @@ import com.example.service.UpdateUserNameService;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/get")
-public class updateUserNameController {
+public class UpdateUserNameController {
 	
 	@Autowired
 	private UpdateUserNameService updateUserNameService;
