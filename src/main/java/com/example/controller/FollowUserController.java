@@ -56,8 +56,28 @@ public class FollowUserController {
 	public void follow(@RequestBody(required = false) FollowUserForm form) {
 
 		followUserService.follow(form);
-		
-		
+	}
+	
+	/**
+	 * フォローフラグをfalseからtrueにして、
+	 * フォローリクエストを承認する.
+	 * 
+	 * @param form
+	 */
+	@PostMapping("/approveFollowRequest")
+	public void approveFollowRequest(@RequestBody(required = false) FollowUserForm form) {
+		followUserService.approveFollowRequest(form);
+	}
+	
+	/**
+	 * フォローを解除する.
+	 * 
+	 * @param form
+	 */
+	@PostMapping("/unFollow")
+	public void cancelFollow(@RequestBody(required = false) FollowUserForm form) {
+		System.out.println("通信成功"+form);
+		followUserService.deleteFollow(form);
 	}
 
 

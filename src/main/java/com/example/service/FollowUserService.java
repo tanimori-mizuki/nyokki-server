@@ -66,7 +66,7 @@ public class FollowUserService {
 	 * @param form
 	 * @return
 	 */
-	public Boolean follow(FollowUserForm form) {
+	public void follow(FollowUserForm form) {
 
 		Following following = new Following();
 		following.setFollowingId(form.getLoginUser().getId());
@@ -74,7 +74,42 @@ public class FollowUserService {
 		following.setFollowedId(form.getFollowedId());
 		followingMapper.insertSelective(following);
 		System.out.println("インサートされました");
-		return false;
+
+	}
+
+	/**
+	 * フォローリクエストを承認する処理.
+	 * 
+	 * @param form
+	 */
+	public void approveFollowRequest(FollowUserForm form) {
+
+		Following following = new Following();
+		following.setId(form.getFollowingsId());
+		following.setFollowingId(form.getFollowingId());
+		following.setFollowedId(form.getFollowedId());
+		following.setFollowFlag(true);
+		followingMapper.updateByPrimaryKey(following);
+
+		ResponseFollowObject responseFollowObject = new ResponseFollowObject();
+
+		List<AllUserDto> followerList = userMapper.followerUserList(form.getLoginUser().getId());
+
+		responseFollowObject.setFollowerList(followerList);
+
+		System.out.println("アップデート完了");
+
+	}
+
+	/**
+	 * フォローテーブルからフォロー情報を削除する処理.
+	 * 
+	 * @param form
+	 */
+	public void deleteFollow(FollowUserForm form) {
+
+		followingMapper.deleteByPrimaryKey(form.getFollowingsId());
+
 	}
 
 }
