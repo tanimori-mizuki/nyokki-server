@@ -36,6 +36,7 @@ public class RegisterUserService {
 		System.out.println("ログインユーザName：" + form.getName());
 		System.out.println("ログインユーザGmail：" + form.getGmail());
 		User loginUser = new User();
+		System.out.println(form.getPhotoUrl());
 		BeanUtils.copyProperties(form, loginUser);
 		loginUser.setContinuationDays(0);
 		loginUser.setFirstdayContinuation(new Date());

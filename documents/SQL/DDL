@@ -6,7 +6,8 @@ name varchar(30) NOT NULL UNIQUE,
 gmail varchar(255) NOT NULL,
 continuation_days integer NOT NULL,
 firstday_continuation date,
-level_achievement integer);
+level_achievement integer,
+photo_url varchar(100));
 
 --ToDoテーブル
 DROP TABLE IF EXISTS todoes CASCADE;
@@ -59,9 +60,9 @@ followed_id integer NOT NULL);
 --インサート文テスト用ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 --ユーザー情報
-insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement) values('same','same@gmail.com',3,'2020-11-11',2);
-insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement) values('same2','same2@gmail.com',2,'2020-11-16',3);
-insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement) values('same3','same3@gmail.com',1,'2020-11-16',1);
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same','same@gmail.com',3,'2020-11-11',2,'サメ画像1');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same2','same2@gmail.com',2,'2020-11-16',3,'サメ画像2');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same3','same3@gmail.com',1,'2020-11-16',1,'サメ画像3');
 
 --Todo情報
 insert into todoes (task,status,registration_date) values('サンプルタスク',1,'2020-11-16');
