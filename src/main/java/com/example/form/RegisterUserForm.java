@@ -9,4 +9,6 @@ public class RegisterUserForm {
 	private String name;
 	/** ログインしたGメールアドレス */	
 	private String gmail;
+	/** ログインしたユーザー画像 */	
+	private String photoUrl;
 }
