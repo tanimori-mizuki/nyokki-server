@@ -20,7 +20,7 @@ import com.example.service.RegisterDailyReportService;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/get")
-public class RegisterDailyReportController {
+public class SaveDailyReportController {
 
 	@Autowired
 	private RegisterDailyReportService registerDailyReportService;
@@ -31,7 +31,7 @@ public class RegisterDailyReportController {
 	 * @param form
 	 */
 	@PostMapping("/registerdailyReport")
-	public DailyReport RegisterDairyReport(@RequestBody(required = false) RegisterDailyReportForm form) {
+	public DailyReport SaveDairyReport(@RequestBody(required = false) RegisterDailyReportForm form) {
 		DailyReport dailyReport = registerDailyReportService.registerDailyReport(form);
 		return dailyReport;
 	}
