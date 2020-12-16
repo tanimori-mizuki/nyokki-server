@@ -70,13 +70,25 @@ public class FollowUserController {
 	}
 	
 	/**
+	 * フォローテーブルから削除して、
+	 * フォローリクエストを否認する.
+	 * フォローテーブルからも削除する.
+	 * 
+	 * @param form
+	 */
+	@PostMapping("/denyFollowRequest")
+	public void denyFollowRequest(@RequestBody(required = false) FollowUserForm form) {
+		followUserService.denyFollowRequest(form);
+	}
+	
+	/**
+	 * フォローテーブルから削除して、
 	 * フォローを解除する.
 	 * 
 	 * @param form
 	 */
 	@PostMapping("/unFollow")
 	public void cancelFollow(@RequestBody(required = false) FollowUserForm form) {
-		System.out.println("通信成功"+form);
 		followUserService.deleteFollow(form);
 	}
 

@@ -61,7 +61,8 @@ public class FollowUserService {
 	}
 
 	/**
-	 * フォローテーブルにインサートする処理.
+	 * フォローテーブルにインサートする処理. 
+	 * フォロー許可が承認される前なのでフォローフラグはfalse.
 	 * 
 	 * @param form
 	 * @return
@@ -70,15 +71,14 @@ public class FollowUserService {
 
 		Following following = new Following();
 		following.setFollowingId(form.getLoginUser().getId());
-		System.out.println("フォローされるID:" + form.getFollowedId());
 		following.setFollowedId(form.getFollowedId());
 		followingMapper.insertSelective(following);
-		System.out.println("インサートされました");
 
 	}
 
 	/**
-	 * フォローリクエストを承認する処理.
+	 * フォローリクエストを承認する処理. 
+	 * フォローフラグをtrueにする.
 	 * 
 	 * @param form
 	 */
@@ -97,19 +97,27 @@ public class FollowUserService {
 
 		responseFollowObject.setFollowerList(followerList);
 
-		System.out.println("アップデート完了");
-
 	}
 
 	/**
-	 * フォローテーブルからフォロー情報を削除する処理.
+	 * フォローテーブルからフォロー情報を削除する処理. 
+	 * フォローリストからフォローを解除する時に使用.
 	 * 
 	 * @param form
 	 */
 	public void deleteFollow(FollowUserForm form) {
-
 		followingMapper.deleteByPrimaryKey(form.getFollowingsId());
 
+	}
+
+	/**
+	 * フォローテーブルからフォロワー情報を削除する処理. 
+	 * フォロワーリストからフォロー申請を否認する時に使用.
+	 * 
+	 * @param form
+	 */
+	public void denyFollowRequest(FollowUserForm form) {
+		followingMapper.deleteByPrimaryKey(form.getFollowingsId());
 	}
 
 }
