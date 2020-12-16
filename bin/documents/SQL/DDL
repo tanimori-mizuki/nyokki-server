@@ -3,9 +3,11 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
 id serial NOT NULL PRIMARY KEY,
 name varchar(30) NOT NULL UNIQUE,
+gmail varchar(50) NOT NULL,
 continuation_days integer NOT NULL,
 firstday_continuation date,
-level_achievement integer);
+level_achievement integer,
+photo_url varchar(1000));
 
 --ToDoテーブル
 DROP TABLE IF EXISTS todoes;
