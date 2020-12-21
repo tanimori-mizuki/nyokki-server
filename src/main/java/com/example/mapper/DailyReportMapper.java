@@ -27,6 +27,9 @@ public interface DailyReportMapper {
 	 * @return
 	 */
 	DailyReport findByDateAndUserID(Date date, Integer userId);
+	
+	
+	
 
 	/**
 	 * ユーザIdと日付で1件検索を行うメソッド.
