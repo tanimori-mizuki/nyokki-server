@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.DailyReport;
 import com.example.domain.Todo;
 import com.example.dto.ResponseDairyReportObject;
+import com.example.form.ReceiveCalendarDateForm;
+import com.example.mapper.DailyReportMapper;
 import com.example.mapper.TodoMapper;
 
 /**
@@ -23,6 +26,9 @@ public class ShowDairyReportService {
 
 	@Autowired
 	private TodoMapper todoMapper;
+	
+	@Autowired
+	private DailyReportMapper dailyReportMapper;
 
 	/**
 	 * 日報ページ表示に必要な情報を取得
@@ -36,12 +42,24 @@ public class ShowDairyReportService {
 		// 未完了のList
 		List<Todo> uncompleteTodoList = todoMapper.todosFindByDayAndStatusAndUserId(date, 1, userId);
 		responseDairyReportObject.setUncompleteTodoList(uncompleteTodoList);
-
+		//　完了のList
 		List<Todo> completeTodoList = todoMapper.todosFindByDayAndStatusAndUserId(date, 2, userId);
 		responseDairyReportObject.setCompleteTodoList(completeTodoList);
 
+		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, userId);
+		responseDairyReportObject.setDailyReport(dailyReport);
 		return responseDairyReportObject;
 
 	}
+	
+	public ResponseDairyReportObject showPastDairyReport(Integer userId, Date date) {
+		ResponseDairyReportObject responseDairyReportObject = new ResponseDairyReportObject();
+		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, userId);
+		responseDairyReportObject.setDailyReport(dailyReport);
+		return responseDairyReportObject;
+	}
+
+	
+	
 
 }

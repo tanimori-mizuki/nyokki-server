@@ -14,6 +14,9 @@ public class ResponseDairyReportObject {
 	
 	List <Todo> completeTodoList;
 	
+	private DailyReport dailyReport;
+	
+	
 	
 
 }
