@@ -16,6 +16,9 @@ public class FollowUserForm {
 	/** ログインユーザー */
 	User loginUser;
 	
+	/** ユーザーID */
+	private Integer userId;
+	
 	/** フォローID */
 	private Integer followingsId;
 

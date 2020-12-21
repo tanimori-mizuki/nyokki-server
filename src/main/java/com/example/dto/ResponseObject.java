@@ -34,4 +34,5 @@ public class ResponseObject {
 	private Objective objective;
 	/** フォロー一覧 */
 	private List<Following> followingList;
+	
 }

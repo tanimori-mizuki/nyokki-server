@@ -26,11 +26,22 @@ public class FollowUserController {
 	 * ユーザテーブルとフォローテーブルから全件取得.
 	 * 
 	 * @param form
-	 * @return
+	 * @return ユーザ情報のリスト
 	 */
 	@PostMapping("/allUserInformation")
 	public List<AllUserDto> getAllUserInformation(@RequestBody(required = false) FollowUserForm form) {
 		return followUserService.getAllUserInformation(form.getLoginUser().getId());
+	}
+
+	/**
+	 * みんなの達成度画面からクリックしたユーザ情報を取得.
+	 * 
+	 * @param form
+	 * @return ユーザ情報
+	 */
+	@PostMapping("/userInformation")
+	public AllUserDto getUserInformation(@RequestBody(required = false) FollowUserForm form) {
+		return followUserService.getUserInfomation(form.getUserId(), form.getLoginUser().getId());
 	}
 
 	/**
@@ -41,12 +52,13 @@ public class FollowUserController {
 	 */
 	@PostMapping("/followAndFollowerList")
 	public ResponseFollowObject getAllFollowList(@RequestBody(required = false) FollowUserForm form) {
-		
+
 		ResponseFollowObject responseFollowObject = new ResponseFollowObject();
 		responseFollowObject = followUserService.getFollowAndFollowerList(form.getLoginUser().getId());
-		
+
 		return responseFollowObject;
 	}
+
 	/**
 	 * フォローテーブルにインサートする.
 	 * 
@@ -54,13 +66,11 @@ public class FollowUserController {
 	 */
 	@PostMapping("/followRequest")
 	public void follow(@RequestBody(required = false) FollowUserForm form) {
-
 		followUserService.follow(form);
 	}
-	
+
 	/**
-	 * フォローフラグをfalseからtrueにして、
-	 * フォローリクエストを承認する.
+	 * フォローフラグをfalseからtrueにして、 フォローリクエストを承認する.
 	 * 
 	 * @param form
 	 */
@@ -68,11 +78,9 @@ public class FollowUserController {
 	public void approveFollowRequest(@RequestBody(required = false) FollowUserForm form) {
 		followUserService.approveFollowRequest(form);
 	}
-	
+
 	/**
-	 * フォローテーブルから削除して、
-	 * フォローリクエストを否認する.
-	 * フォローテーブルからも削除する.
+	 * フォローテーブルから削除して、 フォローリクエストを否認する. フォローテーブルからも削除する.
 	 * 
 	 * @param form
 	 */
@@ -80,10 +88,9 @@ public class FollowUserController {
 	public void denyFollowRequest(@RequestBody(required = false) FollowUserForm form) {
 		followUserService.denyFollowRequest(form);
 	}
-	
+
 	/**
-	 * フォローテーブルから削除して、
-	 * フォローを解除する.
+	 * フォローテーブルから削除して、 フォローを解除する.
 	 * 
 	 * @param form
 	 */
@@ -91,6 +98,5 @@ public class FollowUserController {
 	public void cancelFollow(@RequestBody(required = false) FollowUserForm form) {
 		followUserService.deleteFollow(form);
 	}
-
 
 }

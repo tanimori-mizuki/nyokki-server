@@ -14,6 +14,14 @@ import org.apache.ibatis.annotations.Param;
  * 
  * @author fuka DIコンテナに入れるため、手動でアノテーションを追加
  */
+/**
+ * @author rinashioda
+ *
+ */
+/**
+ * @author rinashioda
+ *
+ */
 @Mapper
 public interface UserMapper {
 
@@ -65,6 +73,16 @@ public interface UserMapper {
 	 * @return フォロワーユーザ情報
 	 */
 	List<AllUserDto> followerUserList(Integer id);
+	
+
+	/**
+	 * ユーザーIDとログインユーザーIDで他のユーザーを一件検索
+	 * 
+	 * @param id　ユーザID
+	 * @param followingId　フォローID（ログインユーザID）
+	 * @return
+	 */
+	AllUserDto findUserByFollowingIdAndUserId(Integer id,Integer followingId);
 
 	int countByExample(UserExample example);
 

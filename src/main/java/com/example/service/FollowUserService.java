@@ -19,6 +19,10 @@ import com.example.mapper.UserMapper;
  * @author rinashioda
  *
  */
+/**
+ * @author rinashioda
+ *
+ */
 @Service
 @Transactional
 public class FollowUserService {
@@ -29,9 +33,12 @@ public class FollowUserService {
 	@Autowired
 	private UserMapper userMapper;
 
+	
 	/**
 	 * ユーザーの一覧とフォローの状態を検索する処理.
 	 * 
+	 * @param id　ログインユーザID
+	 * @return　ユーザリスト
 	 */
 	public List<AllUserDto> getAllUserInformation(Integer id) {
 
@@ -39,6 +46,17 @@ public class FollowUserService {
 		return userList;
 	}
 
+	/**
+	 * ログインユーザIDとユーザIDで1件ユーザ情報を取得する.
+	 * 
+	 * @param id　ユーザID
+	 * @param followingId　フォローID（ログインユーザID）
+	 * @return　ユーザ情報
+	 */
+	public AllUserDto getUserInfomation(Integer id,Integer followingId) {
+		AllUserDto user = userMapper.findUserByFollowingIdAndUserId(id,followingId);
+		return user;
+	}
 	/**
 	 * フォローリストとフォロワーリストを取得する処理.
 	 * 

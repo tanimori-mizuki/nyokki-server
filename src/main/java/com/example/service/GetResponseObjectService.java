@@ -13,6 +13,7 @@ import com.example.domain.MonthlyReport;
 import com.example.domain.Objective;
 import com.example.domain.Todo;
 import com.example.domain.User;
+import com.example.dto.AllUserDto;
 import com.example.dto.ResponseObject;
 import com.example.mapper.DailyReportMapper;
 import com.example.mapper.FollowingMapper;
