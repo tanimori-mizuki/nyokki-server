@@ -59,10 +59,10 @@ public class ShowDairyReportController {
 //	}
 	
 	@PostMapping("/pastDailyReport")
-	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
-		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),form2.getDate());
+	public void showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
+		showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),form2.getDate());
 		System.out.println(form2);
-		return responseDairyReportObject;
+		
 	}
 	
 
