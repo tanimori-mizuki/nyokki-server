@@ -1,18 +1,25 @@
 package com.example.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.DailyReport;
 import com.example.domain.User;
 import com.example.dto.ResponseDairyReportObject;
 import com.example.form.ReceiveCalendarDateForm;
 import com.example.form.ReceiveLoginUserForm;
+import com.example.form.ReceiveOtherUserCalendarDateForm;
 import com.example.service.ShowDairyReportService;
 
 /**
@@ -58,10 +65,59 @@ public class ShowDairyReportController {
 //		return responseDairyReportObject;
 //	}
 	
-	@PostMapping("/pastDailyReport")
+//	@PostMapping("/pastDailyReport")
+//	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
+//		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),form2.getDate());
+//		System.out.println(form2);
+//		return responseDairyReportObject;
+//	}
+	/**
+	 * マイページから日報を取得する.
+	 * 
+	 * @param form2
+	 * @return
+	 */
+	@PostMapping("/myPastDailyReport")
 	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
-		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),form2.getDate());
-		System.out.println(form2);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String stringDate =  sdf.format(form2.getDate());
+		
+		Date sqlDate = Date.valueOf(stringDate);
+	
+		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),sqlDate);
+		
+		return responseDairyReportObject;
+	}
+	
+	/**
+	 *　ユーザーページから日報を取得する. 
+	 * @param form
+	 * @return
+	 */
+	@PostMapping("/otherUserPastDailyReport")
+	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveOtherUserCalendarDateForm form) {
+		
+		System.out.println(form);
+
+		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form.getUserId(),form.getDate());
+		
+		System.out.println(responseDairyReportObject.getDailyReport().getRegistrationDate());
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String stringDate =  sdf.format(responseDairyReportObject.getDailyReport().getRegistrationDate());
+		
+		Date sqlDate = Date.valueOf(stringDate);
+		
+		System.out.println(sqlDate);
+		
+		DailyReport newDailyReport = responseDairyReportObject.getDailyReport();
+		newDailyReport.setRegistrationDate(sqlDate);
+		
+		responseDairyReportObject.setDailyReport(newDailyReport);
+		
+		System.out.println("test/"+responseDairyReportObject.getDailyReport().getRegistrationDate());
+	
 		return responseDairyReportObject;
 	}
 	

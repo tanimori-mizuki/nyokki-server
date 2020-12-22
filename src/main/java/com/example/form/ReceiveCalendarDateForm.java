@@ -1,6 +1,8 @@
 package com.example.form;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import com.example.domain.User;
 

@@ -54,7 +54,16 @@ public class ShowDairyReportService {
 	
 	public ResponseDairyReportObject showPastDairyReport(Integer userId, Date date) {
 		ResponseDairyReportObject responseDairyReportObject = new ResponseDairyReportObject();
-		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, userId);
+		
+		// 未完了のList
+		List<Todo> uncompleteTodoList = todoMapper.todosFindByDayAndStatusAndUserId(date, 1, userId);
+		responseDairyReportObject.setUncompleteTodoList(uncompleteTodoList);
+		//　完了のList
+		List<Todo> completeTodoList = todoMapper.todosFindByDayAndStatusAndUserId(date, 2, userId);
+		responseDairyReportObject.setCompleteTodoList(completeTodoList);
+		
+		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, userId);		
+		
 		responseDairyReportObject.setDailyReport(dailyReport);
 		return responseDairyReportObject;
 	}
