@@ -2,20 +2,14 @@ package com.example.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.DailyReport;
-import com.example.domain.User;
 import com.example.dto.ResponseDairyReportObject;
 import com.example.form.ReceiveCalendarDateForm;
 import com.example.form.ReceiveLoginUserForm;
@@ -35,25 +29,28 @@ import com.example.service.ShowDairyReportService;
 @RestController
 @RequestMapping("/get")
 public class ShowDairyReportController {
-	
+
+	private static final ResponseDairyReportObject responseDairyReportObject = null;
 	@Autowired
 	private ShowDairyReportService showDairyReportService;
 
 	/**
-	 * 日報登録画面への遷移
-	 * 今日の日報
+	 * 日報登録画面への遷移 今日の日報
+	 * 
 	 * @param form
 	 * @return
 	 */
 	@PostMapping("/dairyReport")
 	public ResponseDairyReportObject showDairyReport(@RequestBody(required = false) ReceiveLoginUserForm form) {
-		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showDairyReport(form.getLoginUser().getId());
+		ResponseDairyReportObject responseDairyReportObject = showDairyReportService
+				.showDairyReport(form.getLoginUser().getId());
 		System.out.println(responseDairyReportObject);
 		return responseDairyReportObject;
 	}
-	
+
 	/**
 	 * 指定した過去の日報情報
+	 * 
 	 * @param form
 	 * @param form2
 	 * @return
@@ -64,7 +61,7 @@ public class ShowDairyReportController {
 //		System.out.println("日報データ通信"+ responseDairyReportObject);
 //		return responseDairyReportObject;
 //	}
-	
+
 
 //	@PostMapping("/pastDailyReport")
 //	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
@@ -79,18 +76,19 @@ public class ShowDairyReportController {
 	 * @return
 	 */
 	@PostMapping("/myPastDailyReport")
-	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
-		
+	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2) {
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String stringDate =  sdf.format(form2.getDate());
-		
+		String stringDate = sdf.format(form2.getDate());
+
 		Date sqlDate = Date.valueOf(stringDate);
-	
-		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),sqlDate);
-		
+
+		ResponseDairyReportObject responseDairyReportObject = showDairyReportService
+				.showPastDairyReport(form2.getLoginUser().getId(), sqlDate);
+
 		return responseDairyReportObject;
 	}
-	
+
 	/**
 	 *　ユーザーページから日報を取得する. 
 	 * @param form
@@ -99,35 +97,15 @@ public class ShowDairyReportController {
 	@PostMapping("/otherUserPastDailyReport")
 	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveOtherUserCalendarDateForm form) {
 		
-		System.out.println(form);
+		try {
+			ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form.getUserId(),form.getDate());
+			return responseDairyReportObject;
 
-		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form.getUserId(),form.getDate());
-		
-		System.out.println(responseDairyReportObject.getDailyReport().getRegistrationDate());
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String stringDate =  sdf.format(responseDairyReportObject.getDailyReport().getRegistrationDate());
-		
-		Date sqlDate = Date.valueOf(stringDate);
-		
-		System.out.println(sqlDate);
-		
-		DailyReport newDailyReport = responseDairyReportObject.getDailyReport();
-		newDailyReport.setRegistrationDate(sqlDate);
-		
-		responseDairyReportObject.setDailyReport(newDailyReport);
-		
-		System.out.println("test/"+responseDairyReportObject.getDailyReport().getRegistrationDate());
-	
-		return responseDairyReportObject;
-
-//	@PostMapping("/pastDailyReport")
-//	public void showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
-//		showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),form2.getDate());
-//		System.out.println(form2);
-//		
-//
+		} catch(NullPointerException e) {
+			System.err.print(e);
+			return null;		
+		}
+ 		
 	}
-	
 
 }
