@@ -62,7 +62,6 @@ public class ShowDairyReportController {
 //		return responseDairyReportObject;
 //	}
 
-
 //	@PostMapping("/pastDailyReport")
 //	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2 ) {
 //		ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form2.getLoginUser().getId(),form2.getDate());
@@ -78,34 +77,37 @@ public class ShowDairyReportController {
 	@PostMapping("/myPastDailyReport")
 	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String stringDate = sdf.format(form2.getDate());
+		try {
+			ResponseDairyReportObject responseDairyReportObject = showDairyReportService
+					.showPastDairyReport(form2.getLoginUser().getId(), form2.getDate());
+			return responseDairyReportObject;
 
-		Date sqlDate = Date.valueOf(stringDate);
-
-		ResponseDairyReportObject responseDairyReportObject = showDairyReportService
-				.showPastDairyReport(form2.getLoginUser().getId(), sqlDate);
-
-		return responseDairyReportObject;
+		} catch (NullPointerException e) {
+			System.err.print(e);
+			return null;
+		}
 	}
 
 	/**
-	 *　ユーザーページから日報を取得する. 
+	 * ユーザーページから日報を取得する.
+	 * 
 	 * @param form
 	 * @return
 	 */
 	@PostMapping("/otherUserPastDailyReport")
-	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveOtherUserCalendarDateForm form) {
-		
+	public ResponseDairyReportObject showPastDailyReport(
+			@RequestBody(required = false) ReceiveOtherUserCalendarDateForm form) {
+
 		try {
-			ResponseDairyReportObject responseDairyReportObject = showDairyReportService.showPastDairyReport(form.getUserId(),form.getDate());
+			ResponseDairyReportObject responseDairyReportObject = showDairyReportService
+					.showPastDairyReport(form.getUserId(), form.getDate());
 			return responseDairyReportObject;
 
-		} catch(NullPointerException e) {
+		} catch (NullPointerException e) {
 			System.err.print(e);
-			return null;		
+			return null;
 		}
- 		
+
 	}
 
 }
