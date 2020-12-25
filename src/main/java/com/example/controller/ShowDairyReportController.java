@@ -1,8 +1,5 @@
 package com.example.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,6 +72,7 @@ public class ShowDairyReportController {
 	 * @return
 	 */
 	@PostMapping("/myPastDailyReport")
+
 	public ResponseDairyReportObject showPastDailyReport(@RequestBody(required = false) ReceiveCalendarDateForm form2) {
 
 		try {
@@ -86,6 +84,7 @@ public class ShowDairyReportController {
 			System.err.print(e);
 			return null;
 		}
+
 	}
 
 	/**

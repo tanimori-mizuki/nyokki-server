@@ -60,9 +60,15 @@ followed_id integer NOT NULL);
 --インサート文テスト用ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 --ユーザー情報
-insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same','same@gmail.com',3,'2020-11-11',2,'サメ画像1');
-insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same2','same2@gmail.com',2,'2020-11-16',3,'サメ画像2');
-insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same3','same3@gmail.com',1,'2020-11-16',1,'サメ画像3');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same','same@gmail.com',5,'2020-11-11',2,'サメ画像1');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same2','same2@gmail.com',30,'2020-11-16',3,'サメ画像2');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same3','same3@gmail.com',25,'2020-11-16',1,'サメ画像3');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same4','same4@gmail.com',15,'2020-11-17',3,'サメ画像4');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same5','same5@gmail.com',10,'2020-11-17',3,'サメ画像5');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same6','same6@gmail.com',25,'2020-11-17',3,'サメ画像6');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same7','same7@gmail.com',31,'2020-11-17',3,'サメ画像7');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same8','same8@gmail.com',0,'2020-11-17',3,'サメ画像8');
+
 
 --Todo情報
 insert into todoes (task,status,registration_date) values('サンプルタスク',1,'2020-11-16');
