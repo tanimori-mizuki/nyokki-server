@@ -16,5 +16,7 @@ public class ReceiveLoginUserForm {
 	 * ログインユーザ情報
 	 */
 	User loginUser;
+	
+	Integer month;
 
 }

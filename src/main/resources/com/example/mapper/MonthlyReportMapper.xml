@@ -23,6 +23,15 @@
 		where user_id=#{userId};
   </select>
   
+  <!--  userIdで特定の月の月報検索を行う-->
+  <select id="findByDateAndUserId" resultType="com.example.domain.MonthlyReport" resultMap="BaseResultMap">
+  	  	select id,user_id,objective_id,this_month_objective,impressions,next_month_objective,registration_date
+		from monthly_reports
+		where user_id=#{userId} AND
+		registration_date=#{date}
+		order by id desc;
+  </select>
+  
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
