@@ -28,8 +28,6 @@ public interface DailyReportMapper {
 	 */
 	DailyReport findByDateAndUserID(Date date, Integer userId);
 	
-	
-	
 
 	/**
 	 * ユーザIdと日付で1件検索を行うメソッド.
@@ -38,6 +36,15 @@ public interface DailyReportMapper {
 	 * @return 日報情報
 	 */
 	List<DailyReport> findByUserId(Integer userId);
+	
+	/**
+	 * ログインユーザーID今月分の日報情報.
+	 * 
+	 * @param startDate 月初日
+	 * @param endDate　年末日
+	 * @return　今月分の日報情報
+	 */
+	List<DailyReport> findByUserIdAndThisMonth(Integer userId);
 	
 	
 	/**

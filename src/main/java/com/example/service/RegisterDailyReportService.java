@@ -11,9 +11,11 @@ import org.springframework.util.StringUtils;
 
 import com.example.domain.DailyReport;
 import com.example.domain.Todo;
+import com.example.domain.User;
 import com.example.form.RegisterDailyReportForm;
 import com.example.mapper.DailyReportMapper;
 import com.example.mapper.TodoMapper;
+import com.example.mapper.UserMapper;
 
 /**
  * 日報登録のためのサービスクラス
@@ -30,6 +32,9 @@ public class RegisterDailyReportService {
 
 	@Autowired
 	private TodoMapper todoMapper;
+	
+	@Autowired
+	private UserMapper userMapper;
 
 	/**
 	 * 日報登録
@@ -52,6 +57,10 @@ public class RegisterDailyReportService {
 			dailyReport.setLevelAchievementlevelAchievement(form.getLevelAchievementlevelAchievement());
 			dailyReport.setRegistrationDate(date);
 			dailyReportMapper.insertSelective(dailyReport);
+			//ここで日報の継続日数を+1する
+			User loginUser = userMapper.selectByPrimaryKey(form.getLoginUser().getId());
+			loginUser.setContinuationDays(loginUser.getContinuationDays()+1);
+			userMapper.updateByPrimaryKey(loginUser);
 
 			// 作成した日報のIDを取得
 			List<DailyReport> dailyReportList = dailyReportMapper.findByUserId(form.getLoginUser().getId());

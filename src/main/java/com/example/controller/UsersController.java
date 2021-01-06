@@ -37,8 +37,7 @@ public class UsersController {
 //		System.out.println(user.toString());
 		
 		ResponseObject responseObject = new ResponseObject();
-		responseObject = showTopPageService.showTopPage();
-		
+		responseObject = showTopPageService.showTopPage(5);
 		return responseObject;
 
 	}

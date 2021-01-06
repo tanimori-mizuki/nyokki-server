@@ -27,7 +27,9 @@ public class ResponseObject {
 	/** Todo一覧 */
 	private List<Todo> todoList;
 	/** 日報情報 */
-	private DailyReport dailyReport;
+	private DailyReport dailyReport;	
+	/** 日報リスト */
+	private List<DailyReport> dailyReportList;
 	/** 月報情報 */
 	private MonthlyReport monthlyReport;
 	/** 目標情報 */
