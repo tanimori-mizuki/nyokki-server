@@ -13,7 +13,6 @@ import com.example.domain.MonthlyReport;
 import com.example.domain.Objective;
 import com.example.domain.Todo;
 import com.example.domain.User;
-import com.example.dto.AllUserDto;
 import com.example.dto.ResponseObject;
 import com.example.mapper.DailyReportMapper;
 import com.example.mapper.FollowingMapper;
@@ -70,7 +69,10 @@ public class GetResponseObjectService {
 		List<Todo> todoList = todoMapper.findAll(loginUser.getId(), date);
 		// 日報情報
 		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, loginUser.getId());
-
+		
+		//今月の日報情報
+		List<DailyReport> dailyReportList = dailyReportMapper.findByUserIdAndThisMonth(loginUser.getId());
+		
 		// 月報情報
 		MonthlyReport monthlyReport = monthlyReportMapper.findByUserId(loginUser.getId());
 
@@ -85,6 +87,7 @@ public class GetResponseObjectService {
 		responseObject.setUserList(userList);
 		responseObject.setTodoList(todoList);
 		responseObject.setDailyReport(dailyReport);
+		responseObject.setDailyReportList(dailyReportList);
 		responseObject.setMonthlyReport(monthlyReport);
 		responseObject.setObjective(objective);
 		responseObject.setFollowingList(followingList);

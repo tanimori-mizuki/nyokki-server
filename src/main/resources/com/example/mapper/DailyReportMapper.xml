@@ -35,6 +35,11 @@
 		from daily_reports
 		where user_id=#{userId};
 	</select>
+	<!-- １ヶ月分の日報を取得する  -->
+	<select id="findByUserIdAndThisMonth"
+		resultType="com.example.domain.DailyReport" resultMap="BaseResultMap">
+		select * from daily_reports where date_part('month',now()) = date_part('month',registration_date) AND user_id=#{userId}
+	</select>
 	
 	<!-- １ヶ月分の達成度情報を取得する  -->
 	<select id="findByUserIdAndLevelAchievement"

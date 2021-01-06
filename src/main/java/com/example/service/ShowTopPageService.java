@@ -10,9 +10,7 @@ import com.example.domain.DailyReport;
 import com.example.domain.Following;
 import com.example.domain.MonthlyReport;
 import com.example.domain.Objective;
-import com.example.domain.Todo;
 import com.example.domain.User;
-import com.example.dto.AllUserDto;
 import com.example.dto.ResponseObject;
 import com.example.mapper.DailyReportMapper;
 import com.example.mapper.FollowingMapper;
@@ -37,12 +35,13 @@ public class ShowTopPageService {
 	private MonthlyReportMapper monthlyReportMapper;
 	@Autowired
 	private ObjectiveMapper objectiveMapper;
-
-	public ResponseObject showTopPage() {
+	
+	public ResponseObject showTopPage(Integer userId) {
 		List<User> userList = userMapper.findAll();
 		// List<Todo> todoList = todoMapper.findAll();
 		List<Following> followingList = followingMapper.findAll();
 		DailyReport dailyReport = dailyReportMapper.selectByPrimaryKey(1);
+		//List<DailyReport> dailyReportList = dailyReportMapper.findByUserIdAndThisMonth(userId);
 		MonthlyReport monthlyReport = monthlyReportMapper.selectByPrimaryKey(1);
 		Objective objective = objectiveMapper.selectByPrimaryKey(1);
 
@@ -51,6 +50,7 @@ public class ShowTopPageService {
 		// responseObject.setTodoList(todoList);
 		responseObject.setFollowingList(followingList);
 		responseObject.setDailyReport(dailyReport);
+	//	responseObject.setDailyReportList(dailyReportList);
 		responseObject.setMonthlyReport(monthlyReport);
 		responseObject.setObjective(objective);
 
@@ -74,6 +74,7 @@ public class ShowTopPageService {
 
 			System.out.println("日報データ一行分" + dailyReport);
 			System.out.println(dailyReport.toString());
+	//		System.out.println(dailyReportList.toString());
 
 			System.out.println("月報データ一行分" + monthlyReport);
 			System.out.println(monthlyReport.getId() + " " + monthlyReport.getImpressions());
@@ -82,6 +83,7 @@ public class ShowTopPageService {
 			System.out.println("目標データ一行分" + objective);
 			System.out.println(objective.getId() + " " + objective.getObjective());
 			System.out.println(objective.toString());
+			
 		}
 
 		return responseObject;
