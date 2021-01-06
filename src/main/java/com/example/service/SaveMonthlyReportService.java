@@ -21,6 +21,7 @@ public class SaveMonthlyReportService {
 	public void saveMonthlyReport(SaveMonthlyReportForm form) {
 
 		MonthlyReport newMonthlyReport = new MonthlyReport();
+		newMonthlyReport.setUserId(form.getLoginUser().getId());
 		newMonthlyReport.setImpressions(form.getImpression());
 		newMonthlyReport.setNextMonthObjective(form.getNextMonthsGoal());
 		newMonthlyReport.setThisMonthObjective(form.getThisMonthsGoal());

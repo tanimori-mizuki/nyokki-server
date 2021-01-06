@@ -34,8 +34,10 @@ public class ShowCalenderController {
 	
 	@PostMapping("/showCalender")
 	public List<DailyReport> showCalender(@RequestBody ReceiveLoginUserForm form){
-		System.out.println("コントローラー" + form.getLoginUser().getId());
-		return showCalenderService.showLevelAchievement(form.getLoginUser().getId());
+		System.out.println("コントローラー" + form.getLoginUser().getId() + "中身" + form.getYear() + form.getMonth());
+		List<DailyReport> dailyReports = showCalenderService.showLevelAchievement(form.getLoginUser().getId(), form.getYear(), form.getMonth());
+		System.out.println("確認" + dailyReports);
+		return showCalenderService.showLevelAchievement(form.getLoginUser().getId(), form.getYear(), form.getMonth());
 	}
 	
 	

@@ -21,7 +21,7 @@ public class SaveMonthlyReport {
 	@PostMapping("/saveMonthlyReport")
 	public void saveMonthlyReport(@RequestBody SaveMonthlyReportForm form) {
 		saveMonthlyReportService.saveMonthlyReport(form);
-		System.out.println(form);
+		
 
 	}
 

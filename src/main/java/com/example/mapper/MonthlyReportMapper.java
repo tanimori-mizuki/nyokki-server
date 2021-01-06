@@ -1,11 +1,14 @@
 package com.example.mapper;
 
-import com.example.domain.MonthlyReport;
-import com.example.domain.MonthlyReportExample;
+
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import com.example.domain.MonthlyReport;
+import com.example.domain.MonthlyReportExample;
 
 /**
  * XMLファイル上のSQLを呼び出すクラス(myBatisGeneratorで自動生成)
@@ -23,6 +26,15 @@ public interface MonthlyReportMapper {
 	 * @return 月報情報
 	 */
 	MonthlyReport findByUserId(Integer userId);
+	
+	
+	/**
+	 * 月報を日付とユーザーIDで1件検索する
+	 * @param date
+	 * @param userId
+	 * @return
+	 */
+	MonthlyReport findByDateAndUserId(Integer userId, Integer year, Integer month);
 
     int countByExample(MonthlyReportExample example);
 
