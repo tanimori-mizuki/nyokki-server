@@ -22,10 +22,10 @@ public class ShowMonthlyReportService {
 	@Autowired
 	private MonthlyReportMapper monthlyReportMapper;
 	
-	public ResponceMonthlyReportObject showPastMonthlyReport(Integer userId, Date date) {
+	public ResponceMonthlyReportObject showPastMonthlyReport(Integer userId, Integer year, Integer month) {
 		ResponceMonthlyReportObject responceMonthlyReportObject = new ResponceMonthlyReportObject();
 		
-		MonthlyReport monthlyReport = monthlyReportMapper.findByDateAndUserId(date, userId);
+		MonthlyReport monthlyReport = monthlyReportMapper.findByDateAndUserId(userId, year, month);
 		responceMonthlyReportObject.setMonthlyReport(monthlyReport);
 		return responceMonthlyReportObject;
 	}

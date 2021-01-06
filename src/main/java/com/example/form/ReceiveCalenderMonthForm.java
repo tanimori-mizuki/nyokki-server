@@ -12,6 +12,10 @@ public class ReceiveCalenderMonthForm {
 		//カレンダーの月の日付
 		private Date date;
 		
+		private Integer year;
+		
+		private Integer month;
+		
 		/**
 		 * ログインユーザ情報
 		 */

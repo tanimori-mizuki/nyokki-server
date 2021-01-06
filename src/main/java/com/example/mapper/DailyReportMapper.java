@@ -43,10 +43,11 @@ public interface DailyReportMapper {
 	/**
 	 * ユーザーID１ヶ月分の日報情報
 	 * @param userId
+	 * @param date 
 	 * @param registrationDate
 	 * @return １ヶ月分の日報情報
 	 */
-	List<DailyReport> findByUserIdAndLevelAchievement(Integer userId);
+	List<DailyReport> findByUserIdAndLevelAchievement(Integer userId, Integer year, Integer month);
 	
 	
 

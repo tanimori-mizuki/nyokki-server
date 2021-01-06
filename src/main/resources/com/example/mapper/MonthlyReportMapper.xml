@@ -28,7 +28,9 @@
   	  	select id,user_id,objective_id,this_month_objective,impressions,next_month_objective,registration_date
 		from monthly_reports
 		where user_id=#{userId} AND
-		registration_date=#{date}
+		extract(year from registration_date) = #{year} AND
+		extract(month from registration_date) = #{month}
+		<!-- registration_date=#{date} -->
 		order by id desc;
   </select>
   

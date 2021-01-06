@@ -1,5 +1,7 @@
 package com.example.form;
 
+import java.sql.Date;
+
 import com.example.domain.User;
 
 import lombok.Data;
@@ -17,6 +19,11 @@ public class ReceiveLoginUserForm {
 	 */
 	User loginUser;
 	
-	Integer month;
+	//カレンダーの日付
+	private Date date;
+	
+	private Integer year;
+	
+	private Integer month;
 
 }

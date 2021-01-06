@@ -26,8 +26,8 @@ public class ShowCalenderService {
 	
 
 	
-	public List<DailyReport> showLevelAchievement(Integer userId) {
-		List<DailyReport> achivementList =  dailyReportMapper.findByUserIdAndLevelAchievement(userId);
+	public List<DailyReport> showLevelAchievement(Integer userId, Integer year, Integer month) {
+		List<DailyReport> achivementList =  dailyReportMapper.findByUserIdAndLevelAchievement(userId, year, month);
 		for (DailyReport dailyReport : achivementList) {
 			System.out.println("サービスクラス" + dailyReport.getLevelAchievementlevelAchievement());
 		}

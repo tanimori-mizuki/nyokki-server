@@ -34,7 +34,7 @@ public interface MonthlyReportMapper {
 	 * @param userId
 	 * @return
 	 */
-	MonthlyReport findByDateAndUserId(Date date, Integer userId);
+	MonthlyReport findByDateAndUserId(Integer userId, Integer year, Integer month);
 
     int countByExample(MonthlyReportExample example);
 

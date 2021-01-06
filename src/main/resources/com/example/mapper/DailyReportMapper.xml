@@ -43,7 +43,10 @@
 		id,user_id,level_achievementlevel_achievement,impressions,registration_date
 		from daily_reports
 		where user_id=#{userId} and
-		registration_date BETWEEN '2020-11-01' and '2020-11-30';
+		extract(year from registration_date) = #{year} AND
+		extract(month from registration_date) = #{month};
+		<!-- registration_date=#{date} -->
+		<!-- registration_date BETWEEN '2020-11-01' and '2020-11-30'; -->
 	</select>
 
 

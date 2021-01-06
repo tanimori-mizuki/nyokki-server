@@ -33,7 +33,7 @@ public class ShowMonthlyReportController {
 	public ResponceMonthlyReportObject showMonthlyReportObject(@RequestBody(required = false) ReceiveCalenderMonthForm form) {
 		
 		try {
-			ResponceMonthlyReportObject responceMonthlyReportObject = showMonthlyReportService.showPastMonthlyReport(form.getLoginUser().getId(), form.getDate());
+			ResponceMonthlyReportObject responceMonthlyReportObject = showMonthlyReportService.showPastMonthlyReport(form.getLoginUser().getId(), form.getYear(), form.getMonth());
 			System.out.println(responceMonthlyReportObject);
 			return responceMonthlyReportObject;
 			
