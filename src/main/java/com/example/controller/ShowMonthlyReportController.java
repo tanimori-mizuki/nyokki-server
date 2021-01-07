@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dto.ResponceMonthlyReportObject;
 import com.example.form.ReceiveCalenderMonthForm;
+import com.example.form.ReceiveOtherUserCalendarMonthForm;
 import com.example.service.ShowMonthlyReportService;
 
 /**
@@ -43,4 +44,27 @@ public class ShowMonthlyReportController {
 		}
 		
 	}
+	
+	/**
+	 * ユーザーページから月報を取得する
+	 * @param form
+	 * @return
+	 */
+	@PostMapping("/otherUserPastMonthlyReport")
+	public ResponceMonthlyReportObject showMonthlyReportObject(@RequestBody(required = false) ReceiveOtherUserCalendarMonthForm form2) {
+		
+		try {
+			ResponceMonthlyReportObject responceMonthlyReportObject = showMonthlyReportService.showPastMonthlyReport(form2.getUserId(), form2.getYear(), form2.getMonth());
+			System.out.println(responceMonthlyReportObject);
+			return responceMonthlyReportObject;
+			
+		} catch(NullPointerException e) {
+			System.out.println(e);
+			return null;
+		}
+		
+	}
+	
+	
+	
 }
