@@ -33,10 +33,9 @@ DROP TABLE IF EXISTS monthly_reports;
 CREATE TABLE monthly_reports(
 id serial NOT NULL PRIMARY KEY,
 user_id serial NOT NULL REFERENCES users(id),
-objective_id serial NOT NULL,
-this_month_objective varchar(100) NOT NULL,
+this_month_objective_id Integer,
 impressions varchar(1000),
-next_month_objective varchar(100),
+next_month_objective_id Integer,
 registration_date date NOT NULL);
 
 --目標テーブル
@@ -68,12 +67,17 @@ insert into users (name,gmail,continuation_days,firstday_continuation,level_achi
 insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same6','same6@gmail.com',25,'2020-11-17',3,'https://1.bp.blogspot.com/-0jq3ZMtPSg0/WJmwtuBvmzI/AAAAAAABBic/Y4E3T6SGYaUGANXoyMdaPWP7lDhKCQJzwCLcB/s800/fish_nishikianago.png');
 insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same7','same7@gmail.com',31,'2020-11-17',3,'https://2.bp.blogspot.com/-fEy6KevOwEE/Wfg01qIYeUI/AAAAAAABH0o/6vMWFsYc0mARGp4fOuD86GWzs-c-WuWSgCLcBGAs/s800/fish_unagi_oounagi.png');
 insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same8','same8@gmail.com',0,'2020-11-17',3,'https://3.bp.blogspot.com/-3aGcUHTKiC8/XInil4Vr12I/AAAAAAABR10/gQHuUfolFl4q0qdV34IyxhCORFR8hBCWwCLcBGAs/s800/fish_fugu_haku.png');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same9','same9@gmail.com',0,'2021-01-19',3,'https://2.bp.blogspot.com/-CKNIwNXEJfs/UT10NOkarnI/AAAAAAAAOtU/TFvnUj-wWZg/s1600/kodai_megalodon.png');
+insert into users (name,gmail,continuation_days,firstday_continuation,level_achievement,photo_url) values('same10','same10@gmail.com',25,'2021-01-19',3,'https://1.bp.blogspot.com/-gc9oC7ayDtU/XexqYOrt81I/AAAAAAABWfY/zx5Zh2S9tRY7dJAygbbd7Dcjw2RI3SXdQCNcBGAsYHQ/s1600/food_cut_seafood_ebi.png');
 
 
 --Todo情報
 insert into todoes (task,status,registration_date) values('サンプルタスク',1,'2020-11-16');
 insert into todoes (task,status,registration_date) values('サンプルタスク2',1,'2020-11-16');
 insert into todoes (task,status,registration_date) values('サンプルタスク3',1,'2020-11-16');
+
+insert into todoes (user_id, task,status, daily_report_id, registration_date) values(10, 'およぐ', 1, 173,'2020-01-20');
+insert into todoes (user_id, task,status, daily_report_id, registration_date) values(10, 'たべる', 2, 173,'2020-01-20');
 
 --日報情報
 insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(1, 1,'所感1','2020-11-01');
@@ -141,68 +145,98 @@ insert into daily_reports (user_id, level_achievementlevel_achievement, impressi
 insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(1, 2,'所感2','2021-01-29');
 insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(1, 3,'所感3','2021-01-30');
 
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2021-01-01');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感2','2021-01-02');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-03');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感1','2021-01-04');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-05');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-06');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2021-01-07');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感2','2021-01-08');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-09');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感1','2021-01-10');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-11');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-12');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感1','2021-01-13');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-14');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感3','2021-01-15');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感1','2021-01-16');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-17');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感3','2021-01-18');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2021-01-19');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-20');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-21');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2021-01-22');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-23');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-24');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感1','2021-01-25');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感2','2021-01-26');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感3','2021-01-27');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2021-01-28');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2021-01-29');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2021-01-30');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2021-01-01');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感2','2021-01-02');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-03');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感1','2021-01-04');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-05');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-06');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2021-01-07');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感2','2021-01-08');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-09');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感1','2021-01-10');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-11');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-12');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感1','2021-01-13');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-14');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感3','2021-01-15');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感1','2021-01-16');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-17');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2021-01-18');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2021-01-19');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-20');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-21');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2021-01-22');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-23');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-24');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感1','2021-01-25');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感2','2021-01-26');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2021-01-27');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2021-01-28');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2021-01-29');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2021-01-30');
 
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-01');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-02');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-03');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-04');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-05');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-06');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-07');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-08');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-09');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-10');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-12');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-12');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-13');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-14');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-15');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-16');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-17');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-18');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-19');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-20');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-21');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-22');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-23');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-24');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-25');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-26');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-27');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 1,'所感1','2020-12-28');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 2,'所感2','2020-12-29');
-insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(9, 3,'所感3','2020-12-30');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-01');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-02');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-03');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-04');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-05');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-06');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-07');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-08');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-09');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-10');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-12');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-12');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-13');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-14');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-15');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-16');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-17');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-18');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-19');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-20');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-21');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-22');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-23');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-24');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-25');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-26');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-27');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-12-28');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-12-29');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-12-30');
 
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-11-01');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感2','2020-11-02');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2020-11-03');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-11-04');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-11-05');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2020-11-06');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-11-07');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感2','2020-11-08');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-11-09');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感1','2020-11-10');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-11-12');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2020-11-12');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感1','2020-11-13');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-11-14');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-11-15');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感1','2020-11-16');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-11-17');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2020-11-18');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感1','2020-11-19');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感2','2020-11-20');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2020-11-21');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感1','2020-11-22');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-11-23');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感3','2020-11-24');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感1','2020-11-25');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感2','2020-11-26');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 1,'所感3','2020-11-27');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 3,'所感1','2020-11-28');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感2','2020-11-29');
+insert into daily_reports (user_id, level_achievementlevel_achievement, impressions, registration_date) values(10, 2,'所感3','2020-11-30');
 
 
 
@@ -215,6 +249,8 @@ insert into monthly_reports (this_month_objective, impressions, next_month_objec
 insert into objectives (objective, objective_month) values('目標','2021-01-01');
 insert into objectives (objective, objective_month) values('目標2','2021-01-30');
 insert into objectives (objective, objective_month) values('目標3','2021-02-28');
+
+insert into objectives (user_id, objective, objective_month) values(10, 'おいしいさめになる！','2021-01-19');
 
 --フォローテーブル
 insert into followings (follow_flag, following_id, followed_id) values(true,1,2);

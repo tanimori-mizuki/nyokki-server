@@ -23,8 +23,8 @@ public class SaveMonthlyReportService {
 		MonthlyReport newMonthlyReport = new MonthlyReport();
 		newMonthlyReport.setUserId(form.getLoginUser().getId());
 		newMonthlyReport.setImpressions(form.getImpression());
-		newMonthlyReport.setNextMonthObjective(form.getNextMonthsGoal());
-		newMonthlyReport.setThisMonthObjective(form.getThisMonthsGoal());
+//		newMonthlyReport.setNextMonthObjective(form.getNextMonthsGoal());
+//		newMonthlyReport.setThisMonthObjective(form.getThisMonthsGoal());
 		Date date = new Date();
 		newMonthlyReport.setRegistrationDate(date);
 		monthlyReportMapper.insertSelective(newMonthlyReport);
