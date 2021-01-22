@@ -26,6 +26,8 @@ public interface MonthlyReportMapper {
 	MonthlyReport findByUserId(Integer userId);
 	
 	
+	
+	
 	/**
 	 * 月報を日付とユーザーIDで1件検索する
 	 * @param date

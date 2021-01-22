@@ -10,39 +10,39 @@ import org.apache.ibatis.annotations.Param;
 /**
  * XMLファイル上のSQLを呼び出すクラス(myBatisGeneratorで自動生成)
  * 
- * @author fuka
- *DIコンテナに入れるため、手動でアノテーションを追加
+ * @author fuka DIコンテナに入れるため、手動でアノテーションを追加
  */
 @Mapper
 public interface ObjectiveMapper {
-	
+
+
 	/**
-	 * ユーザIdで1件検索を行うメソッド.
+	 * ユーザーIDが一致する目標Listの取得
 	 * 
 	 * @param userId
-	 * @return 目標情報
+	 * @return
 	 */
-	Objective findByUserId(Integer userId);
+	List<Objective> findByUserId(Integer userId);
 
-    int countByExample(ObjectiveExample example);
+	int countByExample(ObjectiveExample example);
 
-    int deleteByExample(ObjectiveExample example);
+	int deleteByExample(ObjectiveExample example);
 
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(Objective record);
+	int insert(Objective record);
 
-    int insertSelective(Objective record);
+	int insertSelective(Objective record);
 
-    List<Objective> selectByExample(ObjectiveExample example);
+	List<Objective> selectByExample(ObjectiveExample example);
 
-    Objective selectByPrimaryKey(Integer id);
+	Objective selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Objective record, @Param("example") ObjectiveExample example);
+	int updateByExampleSelective(@Param("record") Objective record, @Param("example") ObjectiveExample example);
 
-    int updateByExample(@Param("record") Objective record, @Param("example") ObjectiveExample example);
+	int updateByExample(@Param("record") Objective record, @Param("example") ObjectiveExample example);
 
-    int updateByPrimaryKeySelective(Objective record);
+	int updateByPrimaryKeySelective(Objective record);
 
-    int updateByPrimaryKey(Objective record);
+	int updateByPrimaryKey(Objective record);
 }

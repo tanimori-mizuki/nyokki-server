@@ -13,7 +13,7 @@ import com.example.service.SaveMonthlyReportService;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/get")
-public class SaveMonthlyReport {
+public class SaveMonthlyReportController {
 
 	@Autowired
 	private SaveMonthlyReportService saveMonthlyReportService;
@@ -21,7 +21,6 @@ public class SaveMonthlyReport {
 	@PostMapping("/saveMonthlyReport")
 	public void saveMonthlyReport(@RequestBody SaveMonthlyReportForm form) {
 		saveMonthlyReportService.saveMonthlyReport(form);
-		
 
 	}
 

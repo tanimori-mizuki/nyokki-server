@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,19 +70,23 @@ public class GetResponseObjectService {
 		List<Todo> todoList = todoMapper.findAll(loginUser.getId(), date);
 		// 日報情報
 		DailyReport dailyReport = dailyReportMapper.findByDateAndUserID(date, loginUser.getId());
-		
-		//今月の日報情報
-		List<DailyReport> dailyReportList = dailyReportMapper.findByUserIdAndThisMonth(loginUser.getId());
-		
-		// 月報情報
-		MonthlyReport monthlyReport = monthlyReportMapper.findByUserId(loginUser.getId());
 
-		// 目標情報
-		Objective objective = objectiveMapper.findByUserId(loginUser.getId());
+		// 今月の日報情報
+		List<DailyReport> dailyReportList = dailyReportMapper.findByUserIdAndThisMonth(loginUser.getId());
+
+//		// 今月の月報情報
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		MonthlyReport monthlyReport = monthlyReportMapper.findByDateAndUserId(loginUser.getId(), year, month);
+
+//		// 目標情報
+//		Objective objective = objectiveMapper.findByUserId(loginUser.getId());
 
 		// フォロー一覧情報
-		List<Following>followingList = followingMapper.findByUserId(loginUser.getId());
-		
+		List<Following> followingList = followingMapper.findByUserId(loginUser.getId());
+
 		// responseObjectに詰める処理
 		responseObject.setLoginUser(loginUser);
 		responseObject.setUserList(userList);
@@ -89,7 +94,7 @@ public class GetResponseObjectService {
 		responseObject.setDailyReport(dailyReport);
 		responseObject.setDailyReportList(dailyReportList);
 		responseObject.setMonthlyReport(monthlyReport);
-		responseObject.setObjective(objective);
+//		responseObject.setObjective(objective);
 		responseObject.setFollowingList(followingList);
 
 		return responseObject;

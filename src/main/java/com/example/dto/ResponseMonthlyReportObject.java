@@ -4,7 +4,7 @@ import com.example.domain.MonthlyReport;
 
 import lombok.Data;
 @Data
-public class ResponceMonthlyReportObject {
+public class ResponseMonthlyReportObject {
 
 	private MonthlyReport monthlyReport;
 	
