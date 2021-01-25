@@ -19,7 +19,7 @@ import lombok.Data;
  */
 @Data
 public class ResponseObject {
-	
+
 	/** ログインユーザ */
 	private User loginUser;
 	/** ユーザ一覧 */
@@ -27,14 +27,16 @@ public class ResponseObject {
 	/** Todo一覧 */
 	private List<Todo> todoList;
 	/** 日報情報 */
-	private DailyReport dailyReport;	
+	private DailyReport dailyReport;
 	/** 日報リスト */
 	private List<DailyReport> dailyReportList;
 	/** 月報情報 */
 	private MonthlyReport monthlyReport;
-	/** 目標情報 */
-	private Objective objective;
+	/** 今月の目標情報 */
+	private Objective thisMonthObjective;
+	/** 来月の目標情報 */
+	private Objective nextMonthObjective;
 	/** フォロー一覧 */
 	private List<Following> followingList;
-	
+
 }

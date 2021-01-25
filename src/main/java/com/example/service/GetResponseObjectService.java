@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import com.example.domain.DailyReport;
 import com.example.domain.Following;
@@ -82,8 +83,30 @@ public class GetResponseObjectService {
 		MonthlyReport monthlyReport = monthlyReportMapper.findByDateAndUserId(loginUser.getId(), year, month);
 
 //		// 目標情報
-//		Objective objective = objectiveMapper.findByUserId(loginUser.getId());
+		if (!ObjectUtils.isEmpty(monthlyReport)) {
+			Objective thisMonthObjective = objectiveMapper.selectByPrimaryKey(monthlyReport.getThisMonthObjectiveId());
+			Objective nextMonthObjective = objectiveMapper.selectByPrimaryKey(monthlyReport.getNextMonthObjectiveId());
+			responseObject.setThisMonthObjective(thisMonthObjective);
+			responseObject.setNextMonthObjective(nextMonthObjective);
+		} else {
+			// 年末の処理
+			if (month == 1) {
+				month = 12;
+				year = year - 1;
+			} else {
+				month = month - 1;
+			}
+			System.out.println(year+"年"+month+"月");
+			// 前月の日葡データが存在するか確認
+			monthlyReport = monthlyReportMapper.findByDateAndUserId(loginUser.getId(), year, month);
+			if (!ObjectUtils.isEmpty(monthlyReport)) {
+				Objective thisMonthObjective = objectiveMapper
+						.selectByPrimaryKey(monthlyReport.getNextMonthObjectiveId());
+				responseObject.setThisMonthObjective(thisMonthObjective);
 
+			}
+
+		}
 		// フォロー一覧情報
 		List<Following> followingList = followingMapper.findByUserId(loginUser.getId());
 
@@ -94,7 +117,6 @@ public class GetResponseObjectService {
 		responseObject.setDailyReport(dailyReport);
 		responseObject.setDailyReportList(dailyReportList);
 		responseObject.setMonthlyReport(monthlyReport);
-//		responseObject.setObjective(objective);
 		responseObject.setFollowingList(followingList);
 
 		return responseObject;
