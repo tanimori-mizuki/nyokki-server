@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.ResponceMonthlyReportObject;
 import com.example.form.SaveMonthlyReportForm;
 import com.example.service.SaveMonthlyReportService;
 
@@ -19,8 +20,9 @@ public class SaveMonthlyReportController {
 	private SaveMonthlyReportService saveMonthlyReportService;
 
 	@PostMapping("/saveMonthlyReport")
-	public void saveMonthlyReport(@RequestBody SaveMonthlyReportForm form) {
-		saveMonthlyReportService.saveMonthlyReport(form);
+	public ResponceMonthlyReportObject saveMonthlyReport(@RequestBody SaveMonthlyReportForm form) {
+		ResponceMonthlyReportObject responceMonthlyReportObject = saveMonthlyReportService.saveMonthlyReport(form);
+		return responceMonthlyReportObject;
 
 	}
 

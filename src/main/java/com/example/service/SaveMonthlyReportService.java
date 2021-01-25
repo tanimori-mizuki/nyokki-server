@@ -12,8 +12,8 @@ import org.springframework.util.ObjectUtils;
 
 import com.example.domain.MonthlyReport;
 import com.example.domain.Objective;
+import com.example.dto.ResponceMonthlyReportObject;
 import com.example.form.SaveMonthlyReportForm;
-import com.example.mapper.DailyReportMapper;
 import com.example.mapper.MonthlyReportMapper;
 import com.example.mapper.ObjectiveMapper;
 
@@ -33,7 +33,7 @@ public class SaveMonthlyReportService {
 	@Autowired
 	private ObjectiveMapper objectiveMapper;
 
-	public void saveMonthlyReport(SaveMonthlyReportForm form) {
+	public ResponceMonthlyReportObject saveMonthlyReport(SaveMonthlyReportForm form) {
 		System.out.println("formの中身");
 		System.out.println(form.getLoginUser().getId());
 		System.out.println(form.getThisMonthsGoal());
@@ -75,14 +75,9 @@ public class SaveMonthlyReportService {
 			newMonthlyReport.setNextMonthObjectiveId(nextMonth.getId());
 			newMonthlyReport.setRegistrationDate(date);
 			monthlyReportMapper.insertSelective(newMonthlyReport);
-			
 
 		} else {
 
-			// 編集の場合
-			System.out.println(monthlyReport.getId());
-			System.out.println(monthlyReport.getThisMonthObjectiveId());
-			System.out.println(monthlyReport.getNextMonthObjectiveId());
 			Objective thisMonthObjective = objectiveMapper.selectByPrimaryKey(monthlyReport.getThisMonthObjectiveId());
 			thisMonthObjective.setObjective(form.getThisMonthsGoal());
 			objectiveMapper.updateByPrimaryKey(thisMonthObjective);
@@ -96,6 +91,17 @@ public class SaveMonthlyReportService {
 			monthlyReportMapper.updateByPrimaryKey(monthlyReport);
 
 		}
+
+		// 戻り値の作成
+		monthlyReport = monthlyReportMapper.findByDateAndUserId(form.getLoginUser().getId(), year, month);
+		ResponceMonthlyReportObject responceMonthlyReportObject = new ResponceMonthlyReportObject();
+		responceMonthlyReportObject.setMonthlyReport(monthlyReport);
+		Objective thisMonthObjective = objectiveMapper.selectByPrimaryKey(monthlyReport.getThisMonthObjectiveId());
+		responceMonthlyReportObject.setThisMonthObjective(thisMonthObjective);
+		Objective nextMonthObjective = objectiveMapper.selectByPrimaryKey(monthlyReport.getNextMonthObjectiveId());
+		responceMonthlyReportObject.setNextMonthObjective(nextMonthObjective);
+
+		return responceMonthlyReportObject;
 
 	}
 
