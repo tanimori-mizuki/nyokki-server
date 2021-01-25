@@ -34,11 +34,6 @@ public class SaveMonthlyReportService {
 	private ObjectiveMapper objectiveMapper;
 
 	public ResponceMonthlyReportObject saveMonthlyReport(SaveMonthlyReportForm form) {
-		System.out.println("formの中身");
-		System.out.println(form.getLoginUser().getId());
-		System.out.println(form.getThisMonthsGoal());
-		System.out.println(form.getImpression());
-		System.out.println(form.getNextMonthsGoal());
 
 		Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
