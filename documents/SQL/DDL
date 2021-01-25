@@ -240,18 +240,6 @@ insert into daily_reports (user_id, level_achievementlevel_achievement, impressi
 
 
 
---月報情報
-insert into monthly_reports (this_month_objective, impressions, next_month_objective, registration_date) values('今月の目標1','今月の所感1','来月の目標1','2020-11-30');
-insert into monthly_reports (this_month_objective, impressions, next_month_objective, registration_date) values('今月の目標2','今月の所感2','来月の目標2','2020-12-30');
-insert into monthly_reports (this_month_objective, impressions, next_month_objective, registration_date) values('今月の目標3','今月の所感3','来月の目標3','2021-1-30');
-
---目標情報
-insert into objectives (objective, objective_month) values('目標','2021-01-01');
-insert into objectives (objective, objective_month) values('目標2','2021-01-30');
-insert into objectives (objective, objective_month) values('目標3','2021-02-28');
-
-insert into objectives (user_id, objective, objective_month) values(10, 'おいしいさめになる！','2021-01-19');
-
 --フォローテーブル
 insert into followings (follow_flag, following_id, followed_id) values(true,1,2);
 insert into followings (follow_flag, following_id, followed_id) values(false,3,4);

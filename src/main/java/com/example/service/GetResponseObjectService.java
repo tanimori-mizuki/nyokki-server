@@ -96,16 +96,13 @@ public class GetResponseObjectService {
 			} else {
 				month = month - 1;
 			}
-			System.out.println(year+"年"+month+"月");
 			// 前月の日葡データが存在するか確認
 			monthlyReport = monthlyReportMapper.findByDateAndUserId(loginUser.getId(), year, month);
 			if (!ObjectUtils.isEmpty(monthlyReport)) {
 				Objective thisMonthObjective = objectiveMapper
 						.selectByPrimaryKey(monthlyReport.getNextMonthObjectiveId());
 				responseObject.setThisMonthObjective(thisMonthObjective);
-
 			}
-
 		}
 		// フォロー一覧情報
 		List<Following> followingList = followingMapper.findByUserId(loginUser.getId());
