@@ -5,10 +5,10 @@ import com.example.domain.User;
 import lombok.Data;
 
 @Data
-public class UpdateUserNameForm {
+public class UpdateUserPhotoForm {
 	
-	/** アップデートした名前 */
-	private String name;
+	/** アップデートした画像 */
+	private String photoUrl;
 	
 	/** ログインユーザー情報 */
 	User loginUser;
