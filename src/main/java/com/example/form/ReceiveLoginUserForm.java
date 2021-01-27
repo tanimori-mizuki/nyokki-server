@@ -19,6 +19,9 @@ public class ReceiveLoginUserForm {
 	 */
 	User loginUser;
 	
+	/** ユーザ情報 */
+	private Integer userId;
+	
 	//カレンダーの日付
 	private Date date;
 	

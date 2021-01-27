@@ -30,6 +30,7 @@ public class ShowCalenderService {
 		List<DailyReport> achivementList =  dailyReportMapper.findByUserIdAndLevelAchievement(userId, year, month);
 		for (DailyReport dailyReport : achivementList) {
 			System.out.println("サービスクラス" + dailyReport.getLevelAchievementlevelAchievement());
+			System.out.println("サービスクラス2" + dailyReport.getRegistrationDate());
 		}
 		return achivementList ;
 	}

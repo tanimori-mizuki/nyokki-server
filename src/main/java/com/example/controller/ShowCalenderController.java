@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.DailyReport;
 import com.example.form.ReceiveLoginUserForm;
+import com.example.form.ReceiveOtherUserCalendarMonthForm;
 import com.example.service.ShowCalenderService;
 
 @CrossOrigin
@@ -34,10 +35,19 @@ public class ShowCalenderController {
 	
 	@PostMapping("/showCalender")
 	public List<DailyReport> showCalender(@RequestBody ReceiveLoginUserForm form){
-		System.out.println("コントローラー" + form.getLoginUser().getId() + "中身" + form.getYear() + form.getMonth());
+		System.out.println("コントローラー1" + form.getLoginUser().getId() + "中身" + form.getYear() + form.getMonth());
 		List<DailyReport> dailyReports = showCalenderService.showLevelAchievement(form.getLoginUser().getId(), form.getYear(), form.getMonth());
-		System.out.println("確認" + dailyReports);
+		System.out.println("確認ログインユーザー" + dailyReports);
+		System.out.println("コントローラーログインユーザー" + form.getLoginUser().getName() + "中身" + form.getYear() + form.getMonth());
 		return showCalenderService.showLevelAchievement(form.getLoginUser().getId(), form.getYear(), form.getMonth());
+	}
+	
+	@PostMapping("/showUserCalender")
+	public List<DailyReport> showUserCalender(@RequestBody ReceiveOtherUserCalendarMonthForm form2){
+		List<DailyReport> dailyReports = showCalenderService.showLevelAchievement(form2.getUserId(), form2.getYear(), form2.getMonth());
+		System.out.println("確認1" + dailyReports);
+		System.out.println("コントローラー2" + form2.getUserId() + "中身" + form2.getYear() + form2.getMonth());
+		return showCalenderService.showLevelAchievement(form2.getUserId(), form2.getYear(), form2.getMonth());
 	}
 	
 	
